@@ -9,7 +9,7 @@ URL base temporal: http://testing.cordoba.miredbus.com.ar:8282/miredbus
 ## Respuesta
 Ejemplo respuesta OK
 ```
-{"nroExternoTarjeta":"2983943",
+{"nroExternoTarjeta":"CODIGO-TARJETA",
  "tipoTarjeta":"COMUN",
  "estado":"ACTIVA",
  "saldos":[
