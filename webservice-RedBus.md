@@ -3,8 +3,8 @@ Sobre una URL base se pueden aplicar los siguientes llamadas.
 URL base temporal: http://testing.cordoba.miredbus.com.ar:8282/miredbus  
 
 ## Llamadas
-/captcha.png: Devuelve un captcha válido para una sesion de consulta
-/rest/getSaldoCaptcha/CODIGO-TARJETA/TEXTO-CAPTCHA: llamada para obtener el saldo de la tarjeta
+/captcha.png: Devuelve un captcha válido para una sesion de consulta  
+/rest/getSaldoCaptcha/CODIGO-TARJETA/TEXTO-CAPTCHA: llamada para obtener el saldo de la tarjeta  
 
 ## Respuesta
 Ejemplo respuesta OK
