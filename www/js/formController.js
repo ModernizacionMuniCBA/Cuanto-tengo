@@ -7,6 +7,7 @@
     $scope.processForm = function() {
       $http({
       method  : 'POST',
+      crossDomain: true,
       url     : url_base + "/rest/getSaldoCaptcha/" + $scope.formData.cardID + "/" + $scope.formData.captcha,
       // data    : $.param($scope.formData),  // pass in data as strings
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)

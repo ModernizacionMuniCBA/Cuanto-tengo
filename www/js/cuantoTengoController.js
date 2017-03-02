@@ -12,9 +12,9 @@ app.controller('formController', ['$scope', '$http', function($scope, $http) {
   $scope.processForm = function() {
     $http({
     method: "GET",
-    url     : url_base + "/rest/getSaldoCaptcha/" + $scope.formData.cardID + "/" + $scope.formData.captcha,
-    // data    : $.param($scope.formData),  // pass in data as strings
-    headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+    crossDomain: true,
+    withCredentials: true,
+    url: url_base + "/rest/getSaldoCaptcha/" + $scope.formData.cardID + "/" + $scope.formData.captcha
    }).then(function successCallback(response) {
      console.log(url_base + "/rest/getSaldoCaptcha/" + $scope.formData.cardID + "/" + $scope.formData.captcha);
      console.log(response.data);
