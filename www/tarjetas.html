@@ -78,8 +78,8 @@
         <div class="row">
           <div class="tarjetas-list-option col-xs-12">
             <div class="col-xs-3 col-md-2 grafico">
-              <div id="tarjeta-1" class="circle" data-value="300">
-                <p class="saldo">$300.5</p>
+              <div id="tarjeta-1" class="circle" data-value="-12.5">
+                <p class="saldo">-$12.5</p>
               </div>
             </div>
             <div class="col-xs-9 info-tarjeta">
@@ -90,8 +90,8 @@
           </div>
           <div class="tarjetas-list-option col-xs-12">
             <div class="col-xs-3 col-md-2 grafico">
-              <div id="tarjeta-2" class="circle" data-value="-12.5">
-                <p class="saldo">-$12.5</p>
+              <div id="tarjeta-2" class="circle" data-value="300">
+                <p class="saldo">$300</p>
               </div>
             </div>
             <div class="col-xs-9 info-tarjeta">
@@ -112,7 +112,11 @@
 
         <script>
         $( document ).ready(function() {
+          var mayorSaldo = $('.circle').first();
           function getValue(obj){
+            if(obj.data('value') > mayorSaldo.data('value')){
+              mayorSaldo = obj;
+            }
             if (obj.data('value')<0){
               return 0.01
             }else{
@@ -151,7 +155,8 @@
           });
           bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
   				$('body').css('padding-top', bottom);
-  				$('#loading').hide();
+          
+          console.log(mayorSaldo);
         });
         $(window).on('resize', function(){
           $('.grafico').each(function() {
