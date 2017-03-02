@@ -90,6 +90,7 @@ body{
 .menu-list-option-info{
   font-family: Gotham;
   font-weight: 300;
+  color: #6d6d6d;
 }
 
 /* About */
@@ -184,7 +185,8 @@ input.form-control:hover, input.form-control:focus{
 .form-group label{
   font-family: Gotham;
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1em;
+  text-transform: lowercase;
   padding: 5px 15px;
   color: #959696;
 }

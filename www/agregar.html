@@ -10,6 +10,8 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
+        <meta charset="utf-8">
+
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
 
         <meta name="format-detection" content="telephone=no">
@@ -26,7 +28,7 @@
     </head>
     <body>
       <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-        <ul class="nav navmenu-nav">
+        <ul class="nav navmenu-nav first">
           <li>
             <div class="row">
               <div class="col-xs-12">
@@ -83,7 +85,7 @@
           <form ng-submit="processForm()" ng-controller="formController">
             <!-- NAME -->
             <div id="cardName-group" class="form-group col-xs-12">
-              <input type="text" name="cardName" class="form-control" placeholder="Nombre de Tarjeta" ng-model="formData.cardName">
+              <input type="text" name="cardName" class="form-control" placeholder="Nombre de tarjeta" ng-model="formData.cardName">
               <label>Nombre con el que te gustaría identificar la tarjeta</label>
               <span class="help-block"></span>
             </div>
@@ -95,6 +97,7 @@
             <div id="captcha-group" class="form-group col-xs-12">
               <img ng-src="{{url_base}}/captcha.png" alt="captcha" class="img-responsive captcha-img"/>
               <input type="text" name="captcha" class="form-control" placeholder="Captcha" ng-model="formData.captcha">
+              <label>ingrese el código que ve en pantalla</label>
               <span class="help-block"></span>
             </div>
 
