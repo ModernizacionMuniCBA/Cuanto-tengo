@@ -43,4 +43,6 @@ var app = {
     }
 };
 
+var inCordova = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+
 app.initialize();

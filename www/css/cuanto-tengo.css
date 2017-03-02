@@ -1,0 +1,150 @@
+body{
+  background-color: #F7F7F7;
+}
+
+.navbar-ctengo{
+  background-color: #EFF5F9;
+  margin-bottom: 0px;
+}
+.navbar-ctengo .navbar-brand{
+  float: right !important;
+}
+
+.navbar-ctengo .navbar-header{
+  width: 100%;
+}
+
+.navbar-ctengo .navbar-toggle{
+  display: block !important;
+  border: none;
+}
+.navbar-ctengo .navbar-toggle .icon-bar{
+  background-color: #959696;
+}
+
+.side-navbar-title{
+  background-color: #EFF5F9;
+  padding: 0px 20px;
+}
+
+.side-navbar-title .img-menu-ct{
+  max-height: 50px;
+}
+.side-navbar-title .img-menu-muni{
+  margin-top: 3px;
+}
+.navbar-ctengo .navbar-toggle{
+  float: left;
+  margin-left: 15px;
+  margin-right: 0px;
+}
+
+.titulo-logo{
+  color: #0A4C9B;
+  display: table;
+  border-top: 2px solid #0A4C9B;
+  padding: 7px 5px;
+  margin-top: 0px;
+  margin-left: 15px;
+  font-family: Gotham;
+  font-weight: 500;
+}
+
+.escudo-menu{
+  max-height: 75px;
+}
+
+.menu-list{
+  background-color: #F7F7F7;
+}
+
+.about .menu-list{
+  background-color: #EFF5F9;
+}
+
+.menu-list-option{
+  padding: 40px 10px;
+}
+.menu-list-option-link{
+  color: #000;
+}
+.menu-list-option-link:hover .menu-list-option{
+  background-color: #959696;
+  color: #000;
+}
+
+.menu-list-option-title{
+  margin-top: 0px;
+  text-transform: uppercase;
+  font-size: 1.75em;
+  font-family: Gotham;
+  font-weight: 500;
+}
+
+.menu-list-option-info{
+  font-family: Gotham;
+  font-weight: 300;
+}
+
+/* About */
+body.about{
+  background-color: #EFF5F9;
+}
+.about .navbar-ctengo{
+  border: none;
+}
+.muni-about{
+  margin-top: 20px;
+}
+
+.about .version-info{
+  margin-top: 15px;
+  background-color: #0A4C9B;
+}
+.about .version-info .text-version{
+  font-size: 1.5em;
+  color: #F7AC18;
+  font-family: Gotham;
+  font-weight: 300;
+  text-align: left;
+}
+.about .version-info .version-number{
+  text-align: right;
+  font-size: 1.5em;
+  color: #FFF;
+  font-family: Gotham;
+  font-weight: 500;
+}
+
+.about .about-muni{
+  margin-top: 15px;
+  color: #0A4C9B;
+  font-size: 1.5em;
+  font-family: Gotham;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+.about .privacidad{
+  margin-top: 15px;
+  background-color: #F7AC18;
+  color: #0A4C9B;
+  font-size: 1.5em;
+  font-family: Gotham;
+  font-weight: 300;
+  padding-top: 15px;
+}
+
+
+@media(min-width:576px){
+
+}
+@media(min-width:768px){
+
+}
+@media(min-width:992px){
+
+}
+@media(min-width:1200px){
+
+}

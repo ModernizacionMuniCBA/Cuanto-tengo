@@ -1,0 +1,18 @@
+@font-face {
+font-family: Gotham;
+font-weight: 300;
+src: url("../fonts/Gotham-Light.otf");
+}
+
+
+@font-face {
+font-family: Gotham;
+font-weight: 500;
+src: url("../fonts/Gotham-Medium.otf");
+}
+
+@font-face {
+font-family: Gotham Rounded;
+font-weight: 700;
+src: url("../fonts/Gotham-Rounded-Bold.otf");
+}
