@@ -278,6 +278,17 @@ input.form-control:hover, input.form-control:focus{
   background-size: cover;
 }
 
+.saldoMayor{
+  height: 20px;
+  width: 20px;
+  background-color: #EFF5F9;
+  border-radius: 50%;
+  background-image: url('../img/signo.png');
+  background-size: cover;
+  position: absolute;
+  top: 5%;
+  right: 15%;
+}
 .circle canvas{
   margin: 5px;
   display: block;
@@ -295,14 +306,26 @@ input.form-control:hover, input.form-control:focus{
   font-weight: 600;
   font-family: Gotham Rounded;
 }
-
+@media(min-width:375px){
+  .saldoMayor{
+    height: 25px;
+    width: 25px;
+    top: 5%;
+    right: 15%;
+  }
+}
 @media(min-width:576px){
   .circle p.saldo{
     font-size: 1.5em;
   }
 }
 @media(min-width:768px){
-
+  .saldoMayor{
+    height: 40px;
+    width: 40px;
+    top: 10%;
+    right: 15%;
+  }
 }
 @media(min-width:992px){
 .logo-act{
