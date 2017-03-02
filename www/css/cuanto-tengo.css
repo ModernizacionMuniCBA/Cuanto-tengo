@@ -284,16 +284,20 @@ input.form-control:hover, input.form-control:focus{
 .circle p.saldo{
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 40%;
+  transform: translate(-40%, -50%);
   /*width: 100%;*/
   text-align: center;
-  font-size: 1.75em;
-  max-width: 175px;
+  font-size: 1em;
+  max-width: 75px;
+  font-weight: 600;
+  font-family: Gotham Rounded;
 }
 
 @media(min-width:576px){
-
+  .circle p.saldo{
+    font-size: 1.5em;
+  }
 }
 @media(min-width:768px){
 

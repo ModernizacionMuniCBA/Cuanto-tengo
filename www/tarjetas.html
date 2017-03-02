@@ -76,8 +76,8 @@
         <div class="row">
           <div class="tarjetas-list-option col-xs-12">
             <div class="col-xs-3 col-md-2 grafico">
-              <div id="tarjeta-1" class="circle" data-value="0.01">
-                <p class="saldo">$100</p>
+              <div id="tarjeta-1" class="circle" data-value="300">
+                <p class="saldo">$300.5</p>
               </div>
             </div>
             <div class="col-xs-9 info-tarjeta">
@@ -88,7 +88,9 @@
           </div>
           <div class="tarjetas-list-option col-xs-12">
             <div class="col-xs-3 col-md-2 grafico">
-              <img src="img/test.png" class="img-responsive grafico-interno"/>
+              <div id="tarjeta-2" class="circle" data-value="-12.5">
+                <p class="saldo">-$12.5</p>
+              </div>
             </div>
             <div class="col-xs-9 info-tarjeta">
               <h3 class="titulo-tarjeta">Tarjeta 2</h3>
@@ -107,12 +109,29 @@
         <script src="js/jasny-bootstrap.min.js"></script>
         <script>
         $( document ).ready(function() {
+          function getValue(obj){
+            if (obj.data('value')<0){
+              return 0.01
+            }else{
+              return (obj.data('value')/200)
+            }
+          }
+          function getColor(obj){
+            if (obj.data('value')<0){
+                obj.find('.saldo').css('color','#9b110a');
+                return '#9b110a'
+            }else{
+                obj.find('.saldo').css('color','#0A4C9B');
+                return '#0A4C9B'
+            }
+          }
           $('.circle').each(function() {
             $(this).circleProgress({
+              value: getValue($(this)),
               size: 100,
               lineCap: 'round',
               fill: {
-                color: '#0A4C9B'
+                color: getColor($(this))
               }
             });
             $(this).find('canvas').css('width', '100%');
