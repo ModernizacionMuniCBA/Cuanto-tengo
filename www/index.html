@@ -106,16 +106,19 @@
         <script type="text/javascript" src="js/cuantoTengoController.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script src="js/jasny-bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.waitforimages.js"></script>
+
         <script>
         $( document ).ready(function() {
-          bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
-  				$('body').css('padding-top', bottom);
-  				$('#loading').hide();
+          $('.navbar-ctengo').waitForImages(function() {
+              // All descendant images have loaded, now slide up.
+              bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+      				$('body').css('padding-top', bottom);
+          });
         });
         $(window).on('resize', function(){
   				bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
   				$('body').css('padding-top', bottom);
-  				$('#loading').hide();
   			});
         </script>
     </body>
