@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta charset="utf-8">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/fuentes.css">
+        <link rel="stylesheet" type="text/css" href="css/cuanto-tengo.css">
+        <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.css">
+        <title>¿Cuánto Tengo?</title>
+
+    </head>
+    <body>
+      <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+        <ul class="nav navmenu-nav first">
+          <li>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="side-navbar-title">
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <img src="img/cuanto-tengo-texto.png" class="img-responsive img-menu-ct">
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-1">
+                      <img src="img/muni-menu.png" class="img-responsive img-menu-muni">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+    	  <ul class="nav navmenu-nav">
+    	    <li><a href="index.html">INICIO</a></li>
+    	  </ul>
+        <ul class="nav navmenu-nav">
+    	    <li><a href="tarjetas.html">LISTA DE TARJETAS</a></li>
+    	  </ul>
+        <ul class="nav navmenu-nav">
+    	    <li class="active"><a href="agregar.html">AGREGAR UNA TARJETA</a></li>
+    	  </ul>
+    	  <ul class="nav navmenu-nav" style="margin: 30px 0;">
+    	    <li><a href="about.html">SOBRE ESTA APP</a></li>
+    	  </ul>
+      </nav>
+      <div class="navbar navbar-default navbar-ctengo navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand pull-right" href="#"><img src="img/muni-logo.png" class="escudo-menu"/></a>
+          </div>
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-xs-7"><img src="img/cuanto-tengo-logo.png" class="img-responsive logo-act"></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12"><h2 class="titulo-logo">Actualizá </h2></div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <!-- Button modal fullscreen -->
+        <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-fullscreen">
+          Launch modal fullscreen
+        </button> -->
+
+        <!-- Modal fullscreen -->
+        <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+              </div>
+              <div class="modal-body">
+                <h2 class="modal-title" id="myModalLabel">¡Tarjeta cargada con éxito!</h2>
+                <h3>El saldo en tu tarjeta es de:</h3>
+                <h2 class="saldo-modal">$100</h2>
+              </div>
+              <div class="modal-footer">
+                <a href="tarjetas.html" class="btn btn-default btn-modal">Ir a lista de tarjetas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row app" ng-app="cuantoTengo" ng-controller="cuantoTengoController">
+          <form ng-submit="processForm()" ng-controller="formController">
+            <!-- NAME -->
+            <div id="cardName-group" class="form-group col-xs-12">
+              <input type="text" name="cardName" class="form-control" placeholder="Nombre de tarjeta" ng-model="formData.cardName">
+              <label>Nombre con el que te gustaría identificar la tarjeta</label>
+              <span class="help-block"></span>
+            </div>
+            <div id="cardNumber-group" class="form-group col-xs-12">
+              <input type="number" name="cardID" class="form-control" placeholder="Número de tarjeta" ng-model="formData.cardID">
+              <label>El código de tu tarjeta es numérico y se encuentra en la parte posterior de la misma</label>
+              <span class="help-block"></span>
+            </div>
+            <div id="captcha-group" class="form-group col-xs-12">
+              <img ng-src="{{url_base}}/captcha.png" alt="captcha" class="img-responsive captcha-img"/>
+              <input type="text" name="captcha" class="form-control" placeholder="Captcha" ng-model="formData.captcha">
+              <label>ingrese el código que ve en pantalla</label>
+              <span class="help-block"></span>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div class="col-xs-6 col-xs-offset-3">
+              <button type="submit" class="btn btn-night btn-lg btn-block ">
+                <span class="glyphicon glyphicon-plus"></span> Agregar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
+        <script type="text/javascript" src="js/cuantoTengoController.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/jasny-bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.waitforimages.js"></script>
+
+        <script>
+        $( document ).ready(function() {
+
+          $('.navbar-ctengo').waitForImages(function() {
+              bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+      				$('body').css('padding-top', bottom);
+          });
+        });
+        $(window).on('resize', function(){
+  				bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+  				$('body').css('padding-top', bottom);
+  			});
+        </script>
+    </body>
+</html>

@@ -81,6 +81,29 @@
         </div>
       </div>
       <div class="container">
+        <!-- Button modal fullscreen -->
+        <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-fullscreen">
+          Launch modal fullscreen
+        </button> -->
+
+        <!-- Modal fullscreen -->
+        <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+              </div>
+              <div class="modal-body">
+                <h2 class="modal-title" id="myModalLabel">¡Tarjeta cargada con éxito!</h2>
+                <h3>El saldo en tu tarjeta es de:</h3>
+                <h2 class="saldo-modal">$100</h2>
+              </div>
+              <div class="modal-footer">
+                <a href="tarjetas.html" class="btn btn-default btn-modal">Ir a lista de tarjetas</a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row app" ng-app="cuantoTengo" ng-controller="cuantoTengoController">
           <form ng-submit="processForm()" ng-controller="formController">
             <!-- NAME -->
@@ -111,16 +134,20 @@
         </div>
       </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/ui-bootstrap-0.14.3.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
         <script type="text/javascript" src="js/cuantoTengoController.js"></script>
+        <script type="text/javascript" src="js/fullwModalService.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script src="js/jasny-bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.waitforimages.js"></script>
 
         <script>
         $( document ).ready(function() {
+
           $('.navbar-ctengo').waitForImages(function() {
               bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
       				$('body').css('padding-top', bottom);

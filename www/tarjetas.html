@@ -74,10 +74,12 @@
           </div>
         </div>
       </div>
-      <div class="container tarjetas-list">
+      <div class="container tarjetas-list" ng-app="cuantoTengo">
         <a href="agregar.html" class="add-card-button"></a>
-        <div class="row">
-          <div class="tarjetas-list-option col-xs-12">
+        <div class="row" ng-controller="tarjetasController as tgCtrl">
+          <div tarjeta data="item" ng-repeat="item in tarjetas">
+          </div>
+          <!-- <div class="tarjetas-list-option col-xs-12">
             <div class="col-xs-3 col-md-2 grafico">
               <div id="tarjeta-1" class="circle" data-value="-12.5">
                 <p class="saldo">-$12.5</p>
@@ -95,56 +97,48 @@
                 <p class="saldo">$300</p>
               </div>
             </div>
-            <div class="col-xs-9 info-tarjeta">
+            <div class="col-xs-8 info-tarjeta">
               <h3 class="titulo-tarjeta">Tarjeta 2</h3>
               <p class="fecha-actualizacion">Última actualización: <span id="fecha-actualizacion">2/3/17 12:44AM</span></p>
               <p class="numero-tarjeta">Nº de Tarjeta: <br/><span id="numero-tarjeta">5342317</span></p>
             </div>
-          </div>
+            <div class="col-md-offset-1 col-xs-1 botones">
+              <button ng-click="deleteTarjeta('tarjeta-{{data.nroExternoTarjeta}}');" class="boton-borrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><br/>
+            </div>
+          </div> -->
+          <div class="tarjeta-blank-space col-xs-12"></div>
         </div>
       </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/ui-bootstrap-0.14.3.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
-        <script type="text/javascript" src="js/cuantoTengoController.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/circle-progress.js"></script>
-        <script src="js/jasny-bootstrap.min.js"></script>
-
         <script>
-        $( document ).ready(function() {
-          var mayorSaldo = $('.circle').first();
-          function getValue(obj){
-            if(obj.data('value') > mayorSaldo.data('value')){
-              mayorSaldo = obj;
-            }
-            if (obj.data('value')<0){
-              return 0.01
-            }else{
-              return (obj.data('value')/200)
-            }
+        var mayorSaldo = $("<div data-value='0'></div>");
+        function getValue(obj){
+          // console.log(obj);
+          if(obj.data('value') > mayorSaldo.data('value')){
+            mayorSaldo = obj;
           }
-          function getColor(obj){
-            if (obj.data('value')<0){
-                obj.find('.saldo').css('color','#9b110a');
-                return '#9b110a'
-            }else{
-                obj.find('.saldo').css('color','#0A4C9B');
-                return '#0A4C9B'
-            }
+          if (obj.data('value')<0){
+            return 0.01
+          }else{
+            return (obj.data('value')/200)
           }
+        }
+        function getColor(obj){
+          if (obj.data('value')<0){
+              obj.find('.saldo').css('color','#9b110a');
+              return '#9b110a'
+          }else{
+              obj.find('.saldo').css('color','#0A4C9B');
+              return '#0A4C9B'
+          }
+        }
+        function initializeCircles(){
           $('.circle').each(function() {
-            $(this).circleProgress({
-              value: getValue($(this)),
-              size: 200,
-              startAngle: 5.5,
-              lineCap: 'round',
-              fill: {
-                color: getColor($(this))
-              }
-            });
-            $(this).find('canvas').css('width', '100%');
-            $(this).find('canvas').css('height', '100%');
+            initializeCircle($(this));
           });
           $('.grafico').each(function() {
             var altura = $( this ).closest('.tarjetas-list-option').find('.info-tarjeta').outerHeight(false);
@@ -155,11 +149,58 @@
               $( this ).css('margin-top', 0);
             }
           });
+          mayorSaldo.append("<div class='saldoMayor'></div>");
+        }
+        function initializeCircle(circle){
+          circle.circleProgress({
+            value: getValue(circle),
+            size: 200,
+            startAngle: 5.5,
+            lineCap: 'round',
+            fill: {
+              color: getColor(circle)
+            }
+          });
+          circle.find('canvas').css('width', '100%');
+          circle.find('canvas').css('height', '100%');
+        }
+        </script>
+        <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
+        <script type="text/javascript" src="js/cuantoTengoController.js"></script>
+        <script type="text/javascript" src="js/modalService.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/circle-progress.js"></script>
+        <script src="js/jasny-bootstrap.min.js"></script>
+
+        <script>
+        $( document ).ready(function() {
+          // if (confirm('Are you sure you want to save this thing into the database?')) {
+          //     // Save it!
+          // } else {
+          //     // Do nothing!
+          // }
+          $('.circle').each(function() {
+            initializeCircle($(this));
+          });
+          $('.grafico').each(function() {
+            var altura = $( this ).closest('.tarjetas-list-option').find('.info-tarjeta').outerHeight(false);
+            var img_h = $( this ).position().top + $( this ).outerHeight(false);
+            if (img_h < altura) {
+              $( this ).css('margin-top', (altura-img_h)/2);
+            }else{
+              $( this ).css('margin-top', 0);
+            }
+            var borrar = $(this).closest('.boton-borrar');
+            borrar.css('margin-top', ((altura-(borrar.outerHeight(false)))/2));
+          });
+          // $('.boton-borrar').each(function() {
+          //   var altura = $( this ).closest('.tarjetas-list-option').find('.info-tarjeta').outerHeight(false);
+          //   var img_h = $( this ).outerHeight(false);
+          //   $( this ).parent().css('margin-top', (altura-img_h)/2);
+          // });
           bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
   				$('body').css('padding-top', bottom);
 
-          console.log(mayorSaldo);
-          mayorSaldo.append("<div class='saldoMayor'></div>");
         });
         $(window).on('resize', function(){
           $('.grafico').each(function() {

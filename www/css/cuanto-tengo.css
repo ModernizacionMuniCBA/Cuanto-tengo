@@ -252,9 +252,12 @@ input.form-control:hover, input.form-control:focus{
   font-family: Gotham;
   font-weight: 300;
 }
-
+.tarjeta-blank-space{
+  height: 100px;
+}
 .add-card-button {
   position: fixed;
+  z-index: 9999;
   bottom: 20px;
   right: 20px;
   background-image: url('../img/nueva-tarjeta.png');
@@ -306,6 +309,121 @@ input.form-control:hover, input.form-control:focus{
   font-weight: 600;
   font-family: Gotham Rounded;
 }
+.botones{
+  padding: 0;
+}
+.boton-borrar{
+  color: #9b110a;
+}
+.boton-borrar:hover{
+  color: #530905;
+  cursor: pointer;
+}
+.boton-actualizar:hover{
+  cursor: pointer;
+}
+.btn-default{
+  background-color: #959696;
+}
+.modalEliminar{
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.boton-borrar, .boton-actualizar{
+  vertical-align: -40px;
+  font-size: 2em;
+}
+
+.boton-borrar, .boton-actualizar{
+  margin-top: 10px;
+  font-size: 1.5em;
+}
+
+/* Respuestas Agregar Tarjeta */
+
+/* .modal-fullscreen */
+
+.modal-fullscreen {
+  background: #FFF;
+  color: #FFF;
+}
+
+.modal-fullscreen.success {
+  background: #0a9b59;
+}
+.modal-fullscreen.error {
+  background: #9b110a;
+}
+
+.saldo-modal{
+  font-size: 4em;
+  font-family: Gotham Rounded;
+  font-weight: 700;
+  text-align: center;
+}
+
+.modal-fullscreen  .modal-header{
+  border: none;
+}
+
+.modal-fullscreen  .modal-footer{
+  text-align: center;
+  border: none;
+}
+
+.modal-fullscreen .btn-modal{
+  border-radius: 0;
+  border: 2px solid #FFF;
+  font-size: 1.5em;
+  color: #FFF;
+  background-color: transparent;
+}
+
+.modal-fullscreen .close{
+  color: #FFF;
+  font-size: 3em;
+  opacity: 0.75;
+}
+.modal-fullscreen .close:hover{
+  opacity: 1;
+}
+.modal-fullscreen .modal-content {
+  background: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-align: center;
+}
+.modal-backdrop.modal-backdrop-fullscreen {
+  background: #ffffff;
+}
+.modal-backdrop.modal-backdrop-fullscreen.in {
+  opacity: .97;
+  filter: alpha(opacity=97);
+}
+
+/* .modal-fullscreen size: we use Bootstrap media query breakpoints */
+
+.modal-fullscreen .modal-dialog {
+  margin: 0 auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .modal-fullscreen .modal-dialog {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-fullscreen .modal-dialog {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .modal-fullscreen .modal-dialog {
+     width: 1170px;
+  }
+}
+
 @media(min-width:375px){
   .saldoMayor{
     height: 25px;
