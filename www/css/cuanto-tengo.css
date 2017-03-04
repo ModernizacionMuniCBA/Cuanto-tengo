@@ -362,6 +362,13 @@ input.form-control:hover, input.form-control:focus{
   text-align: center;
 }
 
+.error .saldo-modal{
+  font-size: 1.5em;
+  font-family: Gotham;
+  font-weight: 300;
+  text-align: center;
+}
+
 .modal-fullscreen  .modal-header{
   border: none;
 }
