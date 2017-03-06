@@ -1,0 +1,20 @@
+
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body" style="height: 150px;">
+    <!-- NAME -->
+    <form id="modificarNombre" ng-submit="processForm()" ng-controller="formModificarController">
+      <div id="cardName-group" class="form-group col-xs-12">
+        <input type="text" name="cardName" class="form-control" placeholder="Nombre de tarjeta" ng-model="formData.cardName">
+        <label>Nombre con el que te gustaría identificar la tarjeta</label>
+        <span class="help-block"></span>
+          <input type="hidden" name="cardID" ng-value="{{modalOptions.cardID}}" ng-model="formData.cardID" ng-init="formData.cardID = modalOptions.cardID">
+      </div>
+    </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default"
+          data-ng-click="modalOptions.close()">Cancelar</button>
+ <button type="submit" form="modificarNombre" class="btn btn-success" data-ng-click="modalOptions.ok()">Modificar</button>
+</div>

@@ -13,7 +13,7 @@
         <meta charset="utf-8">
 
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;"> -->
-        <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -74,38 +74,13 @@
           </div>
         </div>
       </div>
-      <div class="container tarjetas-list" ng-app="cuantoTengo">
+      <div class="container tarjetas-list" ng-app="cuantoTengo" ng-controller="cuantoTengoController">
+
         <a href="agregar.html" class="add-card-button"></a>
         <div class="row" ng-controller="tarjetasController as tgCtrl">
           <div tarjeta data="item" ng-repeat="item in tarjetas">
           </div>
-          <!-- <div class="tarjetas-list-option col-xs-12">
-            <div class="col-xs-3 col-md-2 grafico">
-              <div id="tarjeta-1" class="circle" data-value="-12.5">
-                <p class="saldo">-$12.5</p>
-              </div>
-            </div>
-            <div class="col-xs-9 info-tarjeta">
-              <h3 class="titulo-tarjeta">Tarjeta 1</h3>
-              <p class="fecha-actualizacion">Última actualización: <span id="fecha-actualizacion">2/3/17 12:15AM</span></p>
-              <p class="numero-tarjeta">Nº de Tarjeta: <br/><span id="numero-tarjeta">5342318</span></p>
-            </div>
-          </div>
-          <div class="tarjetas-list-option col-xs-12">
-            <div class="col-xs-3 col-md-2 grafico">
-              <div id="tarjeta-2" class="circle" data-value="300">
-                <p class="saldo">$300</p>
-              </div>
-            </div>
-            <div class="col-xs-8 info-tarjeta">
-              <h3 class="titulo-tarjeta">Tarjeta 2</h3>
-              <p class="fecha-actualizacion">Última actualización: <span id="fecha-actualizacion">2/3/17 12:44AM</span></p>
-              <p class="numero-tarjeta">Nº de Tarjeta: <br/><span id="numero-tarjeta">5342317</span></p>
-            </div>
-            <div class="col-md-offset-1 col-xs-1 botones">
-              <button ng-click="deleteTarjeta('tarjeta-{{data.nroExternoTarjeta}}');" class="boton-borrar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><br/>
-            </div>
-          </div> -->
+
           <div class="tarjeta-blank-space col-xs-12"></div>
         </div>
       </div>
@@ -168,6 +143,9 @@
         <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
         <script type="text/javascript" src="js/cuantoTengoController.js"></script>
         <script type="text/javascript" src="js/modalService.js"></script>
+        <script type="text/javascript" src="js/modalModificarService.js"></script>
+        <script type="text/javascript" src="js/modalActualizarService.js"></script>
+        <script type="text/javascript" src="js/fullwModalService.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/circle-progress.js"></script>
         <script src="js/jasny-bootstrap.min.js"></script>

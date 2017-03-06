@@ -1,11 +1,11 @@
-app.service('fullwModalService', ['$uibModal',
+app.service('modalModificarService', ['$uibModal',
     function ($uibModal) {
 
         var modalDefaults = {
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: '../www/angular-templates/modalInformeAgregar.html'
+            templateUrl: '../www/angular-templates/modalModificarTarjeta.html'
         };
 
         var modalOptions = {
@@ -13,7 +13,7 @@ app.service('fullwModalService', ['$uibModal',
             actionButtonText: 'OK',
             headerText: 'Proceed?',
             bodyText: 'Perform this action?',
-            aceptarText: 'Ir a lista de tarjetas'
+            cardID: 0
         };
 
         this.showModal = function (customModalDefaults, customModalOptions) {
@@ -24,7 +24,7 @@ app.service('fullwModalService', ['$uibModal',
 
         this.show = function (customModalDefaults, customModalOptions) {
             //Create temp objects to work with since we're in a singleton service
-            var tempModalDefaults = {windowClass: 'modal-fullscreen'};
+            var tempModalDefaults = {windowClass: 'modalEliminar'};
             var tempModalOptions = {};
 
             //Map angular-ui modal custom defaults to modal defaults defined in service

@@ -1,0 +1,23 @@
+
+<div class="modal-header">
+  <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body" style="height: 180px;">
+    <!-- NAME -->
+
+    <form id="modificarNombre" ng-submit="processForm()" ng-controller="formController">
+      <input type="hidden" name="cardID" ng-value="{{modalOptions.cardID}}" ng-model="formData.cardID" ng-init="formData.cardID = modalOptions.cardID">
+      <input type="hidden" name="cardName" ng-value="{{modalOptions.cardName}}" ng-model="formData.cardName" ng-init="formData.cardName = modalOptions.cardName">
+      <div id="captcha-group" class="form-group col-xs-12">
+        <img ng-src="{{modalOptions.urlBase}}/captcha.png" alt="captcha" class="img-responsive captcha-img"/>
+        <input type="text" name="captcha" class="form-control" placeholder="Captcha" ng-model="formData.captcha">
+        <label>ingrese el código que ve en pantalla</label>
+        <span class="help-block"></span>
+      </div>
+    </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default"
+          data-ng-click="modalOptions.close()">Cancelar</button>
+ <button type="submit" form="modificarNombre" class="btn btn-success" data-ng-click="modalOptions.ok()">Actualizar</button>
+</div>

@@ -1,6 +1,7 @@
 app.controller('cuantoTengoController', ['$scope', '$window', function($scope, $window) {
   $scope.url_base = $window.url_base;
 }]);
+
 app.controller('formController', ['$scope', '$http', 'fullwModalService', function($scope, $http, fullwModalService) {
   $scope.formData = {};
   $scope.processForm = function() {
@@ -24,6 +25,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
                 closeButton: true,
                 headerText: '¡Tarjeta cargada con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
+                aceptarText: 'Ir a lista de tarjetas',
                 saldo: response.data.saldos[0].saldo
             };
           }else{
@@ -52,7 +54,6 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
 
 
    }, function errorCallback(response) {
-
     var modalOptions = {
         closeButton: false,
         headerText: '¡Error al cargar la tarjeta!',
@@ -66,6 +67,31 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
   });
   };
 }]);
+
+
+app.controller('formModificarController', ['$scope', '$http', 'fullwModalService', function($scope, $http, fullwModalService) {
+  $scope.formData = {};
+  $scope.processForm = function() {
+    console.log($scope.formData);
+    $scope.storage = window.localStorage;
+    $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+$scope.formData.cardID);
+
+    // $scope.storage.setItem("tarjeta-"+response.data.nroExternoTarjeta, $scope.responseJSON);
+    $scope.datosTarjeta = JSON.parse($scope.tarjeta_string);
+    $scope.datosTarjeta.nombre = $scope.formData.cardName;
+    $scope.storage.setItem("tarjeta-"+$scope.formData.cardID, JSON.stringify($scope.datosTarjeta));
+    var modalOptions = {
+        closeButton: true,
+        headerText: 'Nombre cambiado con éxito!',
+        bodyText: 'El saldo en tu tarjeta es de:',
+        aceptarText: 'Aceptar',
+        saldo: $scope.datosTarjeta.saldos[0].saldo
+    };
+    fullwModalService.showModal({windowClass: 'modal-fullscreen success'}, modalOptions).then(function (result) {
+    });
+  }
+}]);
+
 
 app.controller('tarjetasController', ['$window','$scope', function($window, $scope) {
   var self = this;
@@ -110,6 +136,46 @@ app.directive("borrar", ['modalService', '$timeout', function(modalService, $tim
         modalService.showModal({}, modalOptions).then(function (result) {
           $timeout(function () {
               scope.$apply(attrs.borrar);
+          }, 300);
+        });
+      })
+    }
+}]);
+
+app.directive("modificar", ['modalModificarService', '$timeout', function(modalModificarService, $timeout){
+ return function(scope, element, attrs) {
+      element.bind("click", function(){
+        var modalOptions = {
+            headerText: 'Modificar el nombre de: '+attrs.nombre+'?',
+            bodyText: '¿Estás seguro que querés eliminar esta tarjeta?',
+            cardID: attrs.cardid
+        };
+        modalModificarService.showModal({}, modalOptions).then(function (result) {
+          $timeout(function () {
+              // console.log(attrs);
+              // scope.$apply(attrs.modificar);
+          }, 300);
+        });
+      })
+    }
+}]);
+
+
+app.directive("actualizar", ['modalActualizarService', '$window', '$timeout', function(modalActualizarService, $window, $timeout){
+ return function(scope, element, attrs) {
+      scope.url_base = $window.url_base;
+      element.bind("click", function(){
+        var modalOptions = {
+            headerText: 'Actualizar el saldo de: '+attrs.nombre+'?',
+            bodyText: 'Complete el formulario para actualizar el saldo de su tarjeta.',
+            cardID: attrs.cardid,
+            cardName: attrs.nombre,
+            urlBase: scope.url_base
+        };
+        modalActualizarService.showModal({}, modalOptions).then(function (result) {
+          $timeout(function () {
+              // console.log(attrs);
+              scope.$apply(attrs.actualizar);
           }, 300);
         });
       })

@@ -257,7 +257,7 @@ input.form-control:hover, input.form-control:focus{
 }
 .add-card-button {
   position: fixed;
-  z-index: 9999;
+  z-index: 1001;
   bottom: 20px;
   right: 20px;
   background-image: url('../img/nueva-tarjeta.png');
@@ -326,12 +326,37 @@ input.form-control:hover, input.form-control:focus{
   background-color: #959696;
 }
 .modalEliminar{
-  top: 50%;
-  transform: translate(0, -50%);
+  margin-top: 30px;
 }
+
 .boton-borrar, .boton-actualizar{
-  vertical-align: -40px;
+  vertical-align: -30px;
   font-size: 2em;
+}
+
+/* Tooltip text */
+.boton-borrar .tooltiptext,
+.boton-actualizar .tooltiptext{
+    visibility: hidden;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 0.7em;
+    right: 105%;
+    margin-top: 20px;
+    /*top: 20px;*/
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.boton-borrar:hover .tooltiptext,
+.boton-actualizar:hover .tooltiptext {
+    visibility: visible;
 }
 
 .boton-borrar, .boton-actualizar{
