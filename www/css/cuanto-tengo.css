@@ -191,6 +191,17 @@ input.form-control:hover, input.form-control:focus{
   color: #959696;
 }
 
+.captcha-group{
+  text-align: center;
+}
+
+.captcha-group .captcha-img{
+  display: inline-block;
+}
+
+.captcha-group .actualizarIcon{
+  margin-left: 5px;
+}
 
 /* Lista de Tarjetas */
 .navbar-ctengo.tarjetas .navbar-header{

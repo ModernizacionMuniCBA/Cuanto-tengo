@@ -4,6 +4,9 @@ app.controller('cuantoTengoController', ['$scope', '$window', function($scope, $
 
 app.controller('formController', ['$scope', '$http', 'fullwModalService', function($scope, $http, fullwModalService) {
   $scope.formData = {};
+  $scope.actualizarCaptcha = function(){
+    $("#captcha").prop("src", url_base + "/captcha.png?" + new Date().valueOf());
+  };
   $scope.processForm = function() {
     $http({
     method: "GET",
@@ -175,7 +178,7 @@ app.directive("actualizar", ['modalActualizarService', '$window', '$timeout', fu
         modalActualizarService.showModal({}, modalOptions).then(function (result) {
           $timeout(function () {
               // console.log(attrs);
-              scope.$apply(attrs.actualizar);
+              // scope.$apply(attrs.actualizar);
           }, 300);
         });
       })
