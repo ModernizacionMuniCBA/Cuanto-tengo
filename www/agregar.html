@@ -52,7 +52,7 @@
     	    <li><a href="about.html">SOBRE ESTA APP</a></li>
     	  </ul>
       </nav>
-      <div class="navbar navbar-default navbar-ctengo navbar-fixed-top">
+      <div class="navbar navbar-default navbar-ctengo navbar-static-top">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
@@ -129,14 +129,14 @@
         <script>
         $( document ).ready(function() {
 
-          $('.navbar-ctengo').waitForImages(function() {
-              bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
-      				$('body').css('padding-top', bottom);
-          });
+          // $('.navbar-ctengo').waitForImages(function() {
+          //     bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+      		// 		$('body').css('padding-top', bottom);
+          // });
         });
         $(window).on('resize', function(){
-  				bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
-  				$('body').css('padding-top', bottom);
+  				// bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+  				// $('body').css('padding-top', bottom);
   			});
         </script>
     </body>
