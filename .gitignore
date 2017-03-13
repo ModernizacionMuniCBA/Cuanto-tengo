@@ -1,7 +1,9 @@
 *~
 *.apk
 *.keystore
-to-market.sh
+
+# claves para compilar
+compiler-cfg.sh
 
 # Mac
 .DS_Store
