@@ -1,1 +1,1 @@
-var cordova_app_version = "1.1.110";
+var cordova_app_version = "1.1.113";
