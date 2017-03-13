@@ -53,4 +53,8 @@ $( document ).ready(function() {
       var padding = $('body').css('padding-top');
       $('body').css('padding-top', parseInt(padding)+20);
   }
+  if(!('ontouchstart' in window))
+  {
+    $('.tooltiptext').tooltip('destroy'); // <-- Example code from Bootstrap docs
+  }
 });

@@ -320,6 +320,9 @@ input.form-control:hover, input.form-control:focus{
   font-weight: 600;
   font-family: Gotham Rounded;
 }
+.circle p.saldo.bigger{
+  left: 36%;
+}
 .botones{
   padding: 0;
 }
@@ -367,7 +370,7 @@ input.form-control:hover, input.form-control:focus{
 /* Show the tooltip text when you mouse over the tooltip container */
 .boton-borrar:hover .tooltiptext,
 .boton-actualizar:hover .tooltiptext {
-    visibility: visible;
+    visibility: hidden;
 }
 
 .boton-borrar, .boton-actualizar{
@@ -481,6 +484,10 @@ input.form-control:hover, input.form-control:focus{
   }
 }
 @media(min-width:768px){
+  .boton-borrar:hover .tooltiptext,
+  .boton-actualizar:hover .tooltiptext {
+      visibility: visible;
+  }
   .saldoMayor{
     height: 40px;
     width: 40px;
