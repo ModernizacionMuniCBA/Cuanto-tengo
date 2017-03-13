@@ -17,7 +17,7 @@
        under the License.
  */
 
-package io.cordova.hellocordova;
+package ar.gob.cordoba.gobiernoabierto.cuantotengo;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
