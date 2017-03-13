@@ -1,7 +1,7 @@
 <div class="tarjetas-list-option col-xs-12">
   <div class="col-xs-3 col-md-2 grafico">
     <div id="tarjeta-{{data.nroExternoTarjeta}}" class="circle" data-value="{{data.saldos[0].saldo}}">
-      <p class="saldo">${{data.saldos[0].saldo}}</p>
+      <p class="saldo" ng-class="{bigger: data.saldos[0].saldo > 100}">{{data.saldos[0].saldo | currency : '$' : 2}}</p>
     </div>
   </div>
   <div class="col-xs-8 info-tarjeta">

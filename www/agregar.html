@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
+
         <meta charset="utf-8">
 
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
@@ -60,7 +52,7 @@
     	    <li><a href="about.html">SOBRE ESTA APP</a></li>
     	  </ul>
       </nav>
-      <div class="navbar navbar-default navbar-ctengo navbar-fixed-top">
+      <div class="navbar navbar-default navbar-ctengo navbar-static-top">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
@@ -123,6 +115,8 @@
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-uuid.js"></script>
+
         <script type="text/javascript" src="js/ui-bootstrap-0.14.3.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
@@ -135,14 +129,14 @@
         <script>
         $( document ).ready(function() {
 
-          $('.navbar-ctengo').waitForImages(function() {
-              bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
-      				$('body').css('padding-top', bottom);
-          });
+          // $('.navbar-ctengo').waitForImages(function() {
+          //     bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+      		// 		$('body').css('padding-top', bottom);
+          // });
         });
         $(window).on('resize', function(){
-  				bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
-  				$('body').css('padding-top', bottom);
+  				// bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
+  				// $('body').css('padding-top', bottom);
   			});
         </script>
     </body>

@@ -1,11 +1,18 @@
-app.controller('cuantoTengoController', ['$scope', '$window', function($scope, $window) {
+app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($scope, $window, uuid) {
   $scope.url_base = $window.url_base;
+  $scope.storage = window.localStorage;
+  $scope.uuid = $scope.storage.getItem("uuid");
+  if($scope.uuid == null){
+    var hash = uuid.v4();
+    $scope.storage.setItem("uuid", hash);
+  }
 }]);
 
 app.controller('formController', ['$scope', '$http', 'fullwModalService', function($scope, $http, fullwModalService) {
   $scope.formData = {};
   $scope.actualizarCaptcha = function(){
     $("#captcha").prop("src", url_base + "/captcha.png?" + new Date().valueOf());
+    $scope.formData.captcha = null;
   };
   $scope.processForm = function() {
     $http({
@@ -53,6 +60,8 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
           };
           fullwModalService.showModal({windowClass: 'modal-fullscreen error'}, modalOptions).then(function (result) {
           });
+          $scope.actualizarCaptcha();
+          $scope.formData.captcha = null;
         }
 
 
@@ -65,6 +74,8 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
     };
     fullwModalService.showModal({windowClass: 'modal-fullscreen error'}, modalOptions).then(function (result) {
     });
+    $scope.actualizarCaptcha();
+    $scope.formData.captcha = null;
 
     console.log("Error en server");
   });
@@ -101,9 +112,11 @@ app.controller('tarjetasController', ['$window','$scope', function($window, $sco
   $scope.storage = window.localStorage;
   $scope.tarjetas = [];
   for (var i = 0; i < $scope.storage.length; i++){
-    $scope.tarjeta_string = $scope.storage.getItem($scope.storage.key(i));
-    $scope.tarjeta = JSON.parse($scope.tarjeta_string);
-    $scope.tarjetas.push($scope.tarjeta);
+    if($scope.storage.key(i).indexOf("tarjeta-") != -1){
+      $scope.tarjeta_string = $scope.storage.getItem($scope.storage.key(i));
+      $scope.tarjeta = JSON.parse($scope.tarjeta_string);
+      $scope.tarjetas.push($scope.tarjeta);
+    }
   }
   self.deleteTarjeta = function(id){
     $scope.storage.removeItem('tarjeta-'+id);

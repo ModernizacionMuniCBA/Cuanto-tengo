@@ -82,7 +82,7 @@
           </div>
         </div>
       </div>
-      <div class="container menu-list">
+      <div class="container menu-list"  ng-app="cuantoTengo" ng-controller="cuantoTengoController">
         <div class="row">
           <a href="tarjetas.html" class="menu-list-option-link"><div class="menu-list-option col-xs-12 col-md-6">
             <div class="col-xs-3">
@@ -107,11 +107,15 @@
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-uuid.js"></script>
+        <script type="text/javascript" src="js/ui-bootstrap-0.14.3.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script src="js/jasny-bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.waitforimages.js"></script>
-
+        <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
+        <script type="text/javascript" src="js/cuantoTengoController.js"></script>
         <script>
         $( document ).ready(function() {
           $('.navbar-ctengo').waitForImages(function() {
