@@ -1,3 +1,7 @@
+//This is a web service service which includes get and post type calls and also adds the required authentication headers to all the requests
+//Documentacion: https://richardtier.com/2014/03/15/authenticate-using-django-rest-framework-endpoint-and-angularjs/
+
+
 app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($scope, $window, uuid) {
   $scope.url_base = $window.url_base;
   $scope.storage = window.localStorage;
@@ -8,8 +12,78 @@ app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($
   }
 }]);
 
-app.controller('formController', ['$scope', '$http', 'fullwModalService', function($scope, $http, fullwModalService) {
+app.run(function($http) {
+  $http.defaults.headers.common.Authorization = 'Token '+tokenAuth;
+});
+
+app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filter', function($scope, $http, fullwModalService, $filter) {
   $scope.formData = {};
+  $scope.storage = window.localStorage;
+  $scope.saveConsulta = function(cardID, uid, date, balance, nombre){
+    // POST require fields:
+    //      - nombre_tarjeta.tarjeta.codigo: codigo de la tarjeta RedBus (numero)
+    //      - nombre_tarjeta.uid: Identificador único de la app instalada. Debe tener el prefijo CT- (identifica a la app Cuanto Tengo)
+    //      - momento_dato: Fecha que RedBus informa como la del dato tomado
+    //      - saldo: $ de saldo informado por RedBus
+    if(nombre==""){
+      nombre = "-";
+    }
+    var data = {
+        'nombre_tarjeta.tarjeta.codigo': cardID.toString(),
+        'nombre_tarjeta.uid': "CT-"+uid,
+        'momento_dato': date,
+        'saldo': balance.toString(),
+        'nombre_tarjeta.nombre': nombre
+    };
+    // console.log(data);
+    $http({
+      method: 'POST',
+      url: url_destino+"/v2/redbus-data/saldo-tarjeta-redbus/",
+      data: JSON.stringify(data),//assuming you have the JSON library linked.
+    }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log('Guardado!');
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log('Error al guardar!')
+      });
+  }
+
+  $scope.saveError = function(cardID, uid, error_code, error_details, error_redbus_code, name){
+    // POST require fields:
+    //  - nombre_tarjeta.tarjeta.codigo: codigo de la tarjeta RedBus (numero)
+    //  - nombre_tarjeta.uid: Identificador único de la app instalada. Debe tener el prefijo CT- (identifica a la app Cuanto Tengo)
+    //  - error_code: Codigo de error HTTP que devolvio Redus
+    //  - error_details: Detalles del error
+    //  - error_redbus_code: Codigo de error de RedBus
+
+    var data = {
+        'nombre_tarjeta.tarjeta.codigo': cardID,
+        'nombre_tarjeta.uid': "CT-"+uid,
+        'error_code': error_code,
+        'error_details': error_details,
+        'error_redbus_code': error_redbus_code,
+        'nombre_tarjeta.nombre': name
+    };
+
+    // console.log(data);
+    $http({
+      method: 'POST',
+      url: url_destino+"/v2/redbus-data/error-saldo-redbus/",
+      data: JSON.stringify(data),//assuming you have the JSON library linked.
+    }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log('Guardado!');
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log('Error al guardar!')
+      });
+  }
+
   $scope.actualizarCaptcha = function(){
     $("#captcha").prop("src", url_base + "/captcha.png?" + new Date().valueOf());
     $scope.formData.captcha = null;
@@ -22,11 +96,21 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
     url: url_base + "/rest/getSaldoCaptcha/" + $scope.formData.cardID + "/" + $scope.formData.captcha
    }).then(function successCallback(response) {
        if(response.data.error == "0"){
+          var cardID = $scope.formData.cardID;
+          var uid = $scope.storage.getItem("uuid");
+          var date="";
+          var balance="";
+          var name="";
           if (!angular.isUndefined($scope.formData.cardName)){
+            name = $scope.formData.cardName;
             $scope.responseJSON = JSON.stringify($.extend(response.data, JSON.parse('{"nombre": "' + $scope.formData.cardName+'"}')));
           }else{
             $scope.responseJSON = JSON.stringify(response.data);
           }
+          date = $filter('date')(response.data.fechaSaldo, 'yyyy-MM-dd HH:mm');
+          balance = response.data.saldos[0].saldo;
+          // console.log(date);
+          $scope.saveConsulta(cardID, uid, date, balance, name);
           $scope.storage = window.localStorage;
           $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+response.data.nroExternoTarjeta);
           if($scope.tarjeta_string==null){
@@ -36,7 +120,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
                 headerText: '¡Tarjeta cargada con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
                 aceptarText: 'Ir a lista de tarjetas',
-                saldo: response.data.saldos[0].saldo
+                saldo: balance
             };
           }else{
             $scope.storage.setItem("tarjeta-"+response.data.nroExternoTarjeta, $scope.responseJSON);
@@ -44,7 +128,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
                 closeButton: true,
                 headerText: '¡Tarjeta actualizada con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
-                saldo: response.data.saldos[0].saldo
+                saldo: balance
             };
           }
 
@@ -52,11 +136,23 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', functi
           });
         }else{
           var errores = {1:"Captcha Incorrecto", 2:"Tarjeta Inexistente", 3:"Tarjeta Duplicada", 98:"Usuario o IP temporalmente suspendido", 99:"Sesión de usuario inexistente", 100:"Otro"}
+          var cardID = $scope.formData.cardID;
+          var uid = $scope.storage.getItem("uuid");
+          var error_code = response.status;
+          var error_details = errores[response.data.error];
+          var error_redbus_code = response.data.error;
+          var name = "";
+          if (!angular.isUndefined($scope.formData.cardName)){
+            name = $scope.formData.cardName;
+          }
+          $scope.saveError(cardID, uid, error_code, error_details, error_redbus_code, name);
+
+          console.log(response);
           var modalOptions = {
               closeButton: false,
               headerText: '¡Error al cargar la tarjeta!',
               bodyText: 'Por favor, intenta nuevamente',
-              saldo: 'Error: ' + errores[response.data.error]
+              error_code: 'Error ('+ response.data.error +'): ' +errores[response.data.error]
           };
           fullwModalService.showModal({windowClass: 'modal-fullscreen error'}, modalOptions).then(function (result) {
           });

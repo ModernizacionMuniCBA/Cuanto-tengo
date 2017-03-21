@@ -5,6 +5,7 @@
   <h2 class="modal-title" id="myModalLabel">{{modalOptions.headerText}}</h2>
   <h3>{{modalOptions.bodyText}}</h3>
   <h2 class="saldo-modal">{{modalOptions.saldo | currency : '$' : 2 }}</h2>
+  <h2 class="saldo-modal">{{modalOptions.error_code }}</h2>
 </div>
 <div class="modal-footer">
   <div ng-if="modalOptions.closeButton">

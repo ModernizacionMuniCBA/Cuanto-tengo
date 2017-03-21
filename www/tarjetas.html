@@ -13,7 +13,7 @@
         <meta charset="utf-8">
 
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;"> -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar/ https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/ http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -84,6 +84,7 @@
           <div class="tarjeta-blank-space col-xs-12"></div>
         </div>
       </div>
+        <div id="myLogs" class="hidden"></div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/angular.min.js"></script>
@@ -142,6 +143,8 @@
           circle.find('canvas').css('height', '100%');
         }
         </script>
+        <script type="text/javascript" src="js/credentials.js"></script>
+
         <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
         <script type="text/javascript" src="js/cuantoTengoController.js"></script>
         <script type="text/javascript" src="js/modalService.js"></script>
