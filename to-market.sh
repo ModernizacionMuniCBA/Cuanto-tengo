@@ -7,11 +7,12 @@ source compiler-cfg.sh
 # export APPNAME=CuantoTengo
 # export MKEY="xxxxxxxxxx"
 # export MYSDKPATH=/home/user/android-sdk-linux
+# export TOKENJS=xxxxxxxxxxxx
 echo "Importado"
 echo " -- APPNAME=${APPNAME}"
 echo " -- MKEY=${MKEY}"
 echo " -- MYSDKPATH=${MYSDKPATH}"
-
+echo " -- TOKENJS=${TOKENJS}"
 
 echo " ******************************** "
 echo "Identificando la versión en config.xml ..."
@@ -23,6 +24,8 @@ cat config.xml \
     | grep '^<widget' \
     | sed 's|^.*version="\([^"]\+\)".*|var cordova_app_version = "\1";|' \
     >> www/version.js
+
+echo "var tokenAuth = '${TOKENJS}';" > www/js/credentials.js
 
 export ANDROID_HOME=$MYSDKPATH
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
