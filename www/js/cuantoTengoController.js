@@ -1,4 +1,4 @@
-app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', '$http', 'fullwModalVersionService', function($scope, $window, uuid, $http, fullwModalVersionService) {
+app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($scope, $window, uuid) {
   $scope.url_base = $window.url_base;
   $scope.storage = window.localStorage;
   $scope.uuid = $scope.storage.getItem("uuid");
@@ -6,6 +6,11 @@ app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', '$http', '
     var hash = uuid.v4();
     $scope.storage.setItem("uuid", hash);
   }
+}]);
+
+app.controller('versionController', ['$scope', '$window', 'uuid', '$http', 'fullwModalVersionService', function($scope, $window, uuid, $http, fullwModalVersionService) {
+  $scope.url_base = $window.url_base;
+  $scope.storage = window.localStorage;
   $scope.check = function(response){
     if(response.data.version_minima > cordova_app_version){
       var modalOptions = {

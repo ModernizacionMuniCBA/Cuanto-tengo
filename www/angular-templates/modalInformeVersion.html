@@ -1,0 +1,11 @@
+<div class="modal-header" ng-if="modalOptions.closeButton">
+  <button type="button" class="close" data-ng-click="modalOptions.close()" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+</div>
+<div class="modal-body">
+  <h2 class="modal-title" id="myModalLabel">{{modalOptions.headerText}}</h2>
+</div>
+<div class="modal-footer">
+  <div ng-if="modalOptions.closeButton">
+      <button type="button" class="btn btn-default btn-modal" data-ng-click="modalOptions.close()">Cerrar</button>
+  </div>
+</div>
