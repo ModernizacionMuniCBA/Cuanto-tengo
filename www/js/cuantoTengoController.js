@@ -31,7 +31,6 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
         'saldo': balance.toString(),
         'nombre_tarjeta.nombre': nombre
     };
-    // console.log(data);
     $http({
       method: 'POST',
       url: url_destino+"/v2/redbus-data/saldo-tarjeta-redbus/",
@@ -39,7 +38,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
-        console.log('Guardado!');
+        // console.log('dato guardado!');
       }, function errorCallback(response) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
@@ -104,9 +103,10 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
             $scope.responseJSON = JSON.stringify(response.data);
           }
           date = $filter('date')(response.data.fechaSaldo, 'yyyy-MM-dd HH:mm');
-          balance = response.data.saldos[0].saldo;
-          // console.log(date);
+          balance = $filter('number')(response.data.saldos[0].saldo, 2);
+
           $scope.saveConsulta(cardID, uid, date, balance, name);
+
           $scope.storage = window.localStorage;
           $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+response.data.nroExternoTarjeta);
           if($scope.tarjeta_string==null){
@@ -141,9 +141,10 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
           if (!angular.isUndefined($scope.formData.cardName)){
             name = $scope.formData.cardName;
           }
+          
           $scope.saveError(cardID, uid, error_code, error_details, error_redbus_code, name);
 
-          console.log(response);
+          // console.log(response);
           var modalOptions = {
               closeButton: false,
               headerText: '¡Error al cargar la tarjeta!',
