@@ -1,7 +1,3 @@
-//This is a web service service which includes get and post type calls and also adds the required authentication headers to all the requests
-//Documentacion: https://richardtier.com/2014/03/15/authenticate-using-django-rest-framework-endpoint-and-angularjs/
-
-
 app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($scope, $window, uuid) {
   $scope.url_base = $window.url_base;
   $scope.storage = window.localStorage;
@@ -13,7 +9,7 @@ app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($
 }]);
 
 app.run(function($http) {
-  $http.defaults.headers.common.Authorization = 'Token '+tokenAuth;
+  $http.defaults.headers.common.Authorization = 'Token ' + tokenAuth; //Setea Header a "Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 });
 
 app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filter', function($scope, $http, fullwModalService, $filter) {
