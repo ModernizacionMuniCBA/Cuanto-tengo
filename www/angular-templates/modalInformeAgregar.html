@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header" ng-if="!modalOptions.closeButton">
   <button type="button" class="close" data-ng-click="modalOptions.close()" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
 </div>
 <div class="modal-body">
@@ -10,6 +10,9 @@
 <div class="modal-footer">
   <div ng-if="modalOptions.closeButton">
       <a href="tarjetas.html" class="btn btn-default btn-modal">{{modalOptions.aceptarText}}</a>
+  </div>
+  <div ng-if="modalOptions.addNew">
+      <a href="agregar.html" class="btn btn-default btn-modal" style="margin-top:10px;">Cargar Otra tarjeta</a>
   </div>
   <div ng-if="!modalOptions.closeButton">
       <button type="button" class="btn btn-danger" data-ng-click="modalOptions.close()">Cerrar</button>

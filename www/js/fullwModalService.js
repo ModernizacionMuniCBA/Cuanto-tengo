@@ -21,7 +21,6 @@ app.service('fullwModalService', ['$uibModal',
             customModalDefaults.backdrop = 'static';
             return this.show(customModalDefaults, customModalOptions);
         };
-
         this.show = function (customModalDefaults, customModalOptions) {
             //Create temp objects to work with since we're in a singleton service
             var tempModalDefaults = {windowClass: 'modal-fullscreen'};
@@ -40,7 +39,7 @@ app.service('fullwModalService', ['$uibModal',
                         $uibModalInstance.close(result);
                     };
                     $scope.modalOptions.close = function (result) {
-                        $uibModalInstance.dismiss('cancel');
+                        $uibModalInstance.close();
                     };
                 }
             }

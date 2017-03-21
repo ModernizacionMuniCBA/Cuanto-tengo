@@ -113,6 +113,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
             $scope.storage.setItem("tarjeta-"+response.data.nroExternoTarjeta, $scope.responseJSON);
             var modalOptions = {
                 closeButton: true,
+                addNew: true,
                 headerText: '¡Tarjeta cargada con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
                 aceptarText: 'Ir a lista de tarjetas',
@@ -141,7 +142,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
           if (!angular.isUndefined($scope.formData.cardName)){
             name = $scope.formData.cardName;
           }
-          
+
           $scope.saveError(cardID, uid, error_code, error_details, error_redbus_code, name);
 
           // console.log(response);
@@ -149,7 +150,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
               closeButton: false,
               headerText: '¡Error al cargar la tarjeta!',
               bodyText: 'Por favor, intenta nuevamente',
-              error_code: 'Error ('+ response.data.error +'): ' +errores[response.data.error]
+              error_code: 'Error ('+ response.data.error +'): ' + errores[response.data.error]
           };
           fullwModalService.showModal({windowClass: 'modal-fullscreen error'}, modalOptions).then(function (result) {
           });
@@ -190,9 +191,9 @@ app.controller('formModificarController', ['$scope', '$http', 'fullwModalService
     var modalOptions = {
         closeButton: true,
         headerText: 'Nombre cambiado con éxito!',
-        bodyText: 'El saldo en tu tarjeta es de:',
+        bodyText: 'El nuevo nombre de tu tarjeta es:',
         aceptarText: 'Aceptar',
-        saldo: $scope.datosTarjeta.saldos[0].saldo
+        error_code: $scope.datosTarjeta.nombre
     };
     fullwModalService.showModal({windowClass: 'modal-fullscreen success'}, modalOptions).then(function (result) {
     });
