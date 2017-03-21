@@ -448,6 +448,25 @@ input.form-control:hover, input.form-control:focus{
   filter: alpha(opacity=97);
 }
 
+/*VERSION*/
+.modal-fullscreen.version {
+  background: #FFF;
+  color: #000;
+}
+
+.modal-fullscreen.version .btn-modal{
+  border-radius: 0;
+  border: 2px solid #000;
+  font-size: 1.5em;
+  color: #000;
+  background-color: transparent;
+}
+
+.modal-fullscreen.version .close{
+  color: #000;
+  font-size: 3em;
+  opacity: 0.75;
+}
 /* .modal-fullscreen size: we use Bootstrap media query breakpoints */
 
 .modal-fullscreen .modal-dialog {

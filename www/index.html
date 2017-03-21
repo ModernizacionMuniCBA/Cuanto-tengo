@@ -117,9 +117,11 @@
         <script src="js/jasny-bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.waitforimages.js"></script>
         <script type="text/javascript" src="js/credentials.js"></script>
-        <!-- <script type="text/javascript" src="js/angular-resource.min.js"></script> -->
+        <script type="text/javascript" src="version.js"></script>
         <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
         <script type="text/javascript" src="js/cuantoTengoController.js"></script>
+        <script type="text/javascript" src="js/fullwModalVersionService.js"></script>
+
         <script>
         $( document ).ready(function() {
           $('.navbar-ctengo').waitForImages(function() {
@@ -127,7 +129,7 @@
               bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
       				$('body').css('padding-top', bottom);
           });
-          checkCredentials("error-saldo-redbus");
+
 
         });
         $(window).on('resize', function(){

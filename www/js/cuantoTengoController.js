@@ -1,4 +1,4 @@
-app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($scope, $window, uuid) {
+app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', '$http', 'fullwModalVersionService', function($scope, $window, uuid, $http, fullwModalVersionService) {
   $scope.url_base = $window.url_base;
   $scope.storage = window.localStorage;
   $scope.uuid = $scope.storage.getItem("uuid");
@@ -6,6 +6,48 @@ app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($
     var hash = uuid.v4();
     $scope.storage.setItem("uuid", hash);
   }
+  $scope.check = function(response){
+    if(response.data.version_minima > cordova_app_version){
+      var modalOptions = {
+          closeButton: false,
+          headerText:  response.data.txt_sino_hay_version_minima,
+      };
+      fullwModalVersionService.showModal({windowClass: 'modal-fullscreen version'}, modalOptions).then(function (result) {
+      });
+    }else{
+      if(response.data.version_recomendada > cordova_app_version){
+        var modalOptions = {
+            closeButton: true,
+            headerText:  response.data.txt_sino_hay_version_recomendada,
+        };
+        fullwModalVersionService.showModal({windowClass: 'modal-fullscreen version'}, modalOptions).then(function (result) {
+        $scope.storage.setItem('lastChecked', new Date());
+        });
+      }else{
+        $scope.storage.setItem('lastChecked', new Date());
+      }
+    }
+  }
+  $scope.checkVersion = function(){
+    $http({
+      method: 'GET',
+      url: url_destino+"/v2/redbus-data/app-redbus/1/",
+    }).then(function successCallback(response) {
+        var lastChecked = $scope.storage.getItem('lastChecked')
+        if(lastChecked == null){
+          $scope.check(response);
+        }else{
+          if((new Date(lastChecked).getTime() + 86400) < new Date().getTime()){
+            $scope.check(response);
+          }
+        }
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log('Error al conectar!')
+      });
+  }
+  $scope.checkVersion();
 }]);
 
 app.run(function($http) {
