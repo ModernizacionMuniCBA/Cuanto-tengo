@@ -150,9 +150,11 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
             $scope.responseJSON = JSON.stringify(response.data);
           }
           date = $filter('date')(response.data.fechaSaldo, 'yyyy-MM-dd HH:mm');
+          // dateOnly = $filter('date')(response.data.fechaSaldo, 'dd-MM-yyyy');
+          // timeOnly = $filter('date')(response.data.fechaSaldo, 'HH:mm');
           balance = $filter('number')(response.data.saldos[0].saldo, 2);
 
-          $scope.saveConsulta(cardID, uid, date, balance, name);
+          // $scope.saveConsulta(cardID, uid, date, balance, name);
 
           $scope.storage = window.localStorage;
           $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+response.data.nroExternoTarjeta);
@@ -164,7 +166,9 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
                 headerText: '¡Tarjeta cargada con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
                 aceptarText: 'Ir a lista de tarjetas',
-                saldo: balance
+                saldo: balance,
+                date: date,
+                showDate: true
             };
           }else{
             $scope.storage.setItem("tarjeta-"+response.data.nroExternoTarjeta, $scope.responseJSON);
@@ -172,7 +176,9 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
                 closeButton: true,
                 headerText: '¡Tarjeta actualizada con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
-                saldo: balance
+                saldo: balance,
+                date: date,
+                showDate: true
             };
           }
 
@@ -338,3 +344,13 @@ app.directive("actualizar", ['modalActualizarService', '$window', '$timeout', fu
       })
     }
 }]);
+
+app.filter('moment', [
+  function () {
+    return function (date, method) {
+      moment.locale('es-do');
+      var momented = moment(date);
+      return momented[method].apply(momented, Array.prototype.slice.call(arguments, 2));
+    };
+  }
+]);

@@ -13,7 +13,8 @@ app.service('fullwModalService', ['$uibModal',
             actionButtonText: 'OK',
             headerText: 'Proceed?',
             bodyText: 'Perform this action?',
-            aceptarText: 'Ir a lista de tarjetas'
+            aceptarText: 'Ir a lista de tarjetas',
+            showDate: false
         };
 
         this.showModal = function (customModalDefaults, customModalOptions) {

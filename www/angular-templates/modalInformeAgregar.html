@@ -6,6 +6,7 @@
   <h3>{{modalOptions.bodyText}}</h3>
   <h2 class="saldo-modal">{{modalOptions.saldo | currency : '$' : 2 }}</h2>
   <h2 class="saldo-modal">{{modalOptions.error_code }}</h2>
+  <p ng-if="modalOptions.showDate">Saldo disponible al {{modalOptions.date | moment:'format':'DD/MM/YYYY'}} a las {{modalOptions.date | moment:'format':'HH:mm:ss'}} ({{ modalOptions.date | moment:'fromNow' }}).</p>
 </div>
 <div class="modal-footer">
   <div ng-if="modalOptions.closeButton">
