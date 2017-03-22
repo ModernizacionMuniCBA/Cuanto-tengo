@@ -55,6 +55,36 @@ app.controller('versionController', ['$scope', '$window', 'uuid', '$http', 'full
   $scope.checkVersion();
 }]);
 
+app.filter('renderHTMLCorrectly', function($sce)
+{
+	return function(stringToParse)
+	{
+		return $sce.trustAsHtml(stringToParse);
+	}
+});
+
+app.controller('aboutController', ['$scope', '$window', '$sce', '$http', function($scope, $window, $sce, $http) {
+  $scope.url_base = $window.url_base;
+  $scope.storage = window.localStorage;
+
+  $http({
+    method: 'GET',
+    url: url_destino+"/v2/redbus-data/app-redbus/1/",
+  }).then(function successCallback(response) {
+      $scope.aboutApp = response.data.about_app;
+      $scope.aboutPriv = response.data.politica_de_privacidad;
+      $scope.aboutTyC = response.data.terminos_y_condiciones;
+
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log('Error al conectar!')
+    });
+
+}]);
+
+
+
 app.run(function($http) {
   $http.defaults.headers.common.Authorization = 'Token ' + tokenAuth; //Setea Header a "Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 });
@@ -126,6 +156,21 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
       });
   }
 
+  $scope.about_data = "";
+  $http({
+    method: 'GET',
+    url: url_destino+"/v2/redbus-data/app-redbus/1/",
+  }).then(function successCallback(resp) {
+      $scope.about_data = resp.data.about_data;
+      // $scope.obtenerDataHTMLAPI = function() {
+      //   return $sce.trustAsHtml(about_data);
+      // };
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log('Error al conectar!')
+    });
+
   $scope.actualizarCaptcha = function(){
     $("#captcha").prop("src", url_base + "/captcha.png?" + new Date().valueOf());
     $scope.formData.captcha = null;
@@ -154,10 +199,11 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
           // timeOnly = $filter('date')(response.data.fechaSaldo, 'HH:mm');
           balance = $filter('number')(response.data.saldos[0].saldo, 2);
 
-          $scope.saveConsulta(cardID, uid, date, balance, name);
+          // $scope.saveConsulta(cardID, uid, date, balance, name);
 
           $scope.storage = window.localStorage;
           $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+response.data.nroExternoTarjeta);
+
           if($scope.tarjeta_string==null){
             $scope.storage.setItem("tarjeta-"+response.data.nroExternoTarjeta, $scope.responseJSON);
             var modalOptions = {
@@ -168,6 +214,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
                 aceptarText: 'Ir a lista de tarjetas',
                 saldo: balance,
                 date: date,
+                aboutData: $scope.about_data,
                 showDate: true
             };
           }else{
@@ -178,6 +225,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
                 bodyText: 'El saldo en tu tarjeta es de:',
                 saldo: balance,
                 date: date,
+                aboutData: $scope.about_data,
                 showDate: true
             };
           }

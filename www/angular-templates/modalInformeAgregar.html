@@ -18,4 +18,5 @@
   <div ng-if="!modalOptions.closeButton">
       <button type="button" class="btn btn-danger" data-ng-click="modalOptions.close()">Cerrar</button>
   </div>
+  <p class="apiInfo" ng-bind-html="modalOptions.aboutData | renderHTMLCorrectly"></p>
 </div>

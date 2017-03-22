@@ -12,7 +12,7 @@
         -->
         <meta charset="utf-8">
 
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:8000 http://www.miredbus.com.ar/ https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/ http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -73,7 +73,7 @@
           <div class="clearfix"></div>
         </div>
       </div>
-      <div class="container menu-list">
+      <div class="container menu-list" ng-app="cuantoTengo" ng-controller="aboutController">
         <div class="row">
           <div class="col-xs-6 col-xs-offset-3">
             <img src="img/muni-menu.png" class="img-responsive muni-about"/>
@@ -94,19 +94,50 @@
           <div class="col-xs-12">
             <h3 class="about-muni">Municipalidad de Córdoba</h3>
           </div>
-          <div class="col-xs-12 privacidad">
-            <p>Mostrar política de Privacidad</p>
+          <div class="col-xs-12">
+            <p class="text-about" ng-bind-html="aboutApp | renderHTMLCorrectly"></p>
           </div>
+
+          <a role="button" data-toggle="collapse" href="#collapsePriv" aria-expanded="false" aria-controls="collapsePriv">
+            <div class="col-xs-12 privacidad">
+              <p>Mostrar política de Privacidad</p>
+            </div>
+          </a>
+
+          <div class="col-xs-12">
+            <div class="collapse" id="collapsePriv">
+              <p class="text-about" ng-bind-html="aboutPriv | renderHTMLCorrectly"></p>
+            </div>
+          </div>
+
+          <a role="button" data-toggle="collapse" href="#collapseTyC" aria-expanded="false" aria-controls="collapseTyC">
+            <div class="col-xs-12 privacidad">
+              <p>Mostrar Términos y Condiciones</p>
+            </div>
+          </a>
+          <div class="col-xs-12">
+            <div class="collapse" id="collapseTyC">
+              <p class="text-about" ng-bind-html="aboutTyC | renderHTMLCorrectly"></p>
+            </div>
+          </div>
+
         </div>
       </div>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
-        <script type="text/javascript" src="js/cuantoTengoController.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script src="js/jasny-bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/angular.min.js"></script>
+      <script type="text/javascript" src="js/angular-uuid.js"></script>
+      <script type="text/javascript" src="js/ui-bootstrap-0.14.3.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script src="js/jasny-bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/credentials.js"></script>
+      <script type="text/javascript" src="version.js"></script>
+      <script type="text/javascript" src="js/moment.js"></script>
+
+      <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
+      <script type="text/javascript" src="js/cuantoTengoController.js"></script>
+
         <script>
         $( document ).ready(function() {
           bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);

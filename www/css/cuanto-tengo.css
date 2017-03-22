@@ -62,6 +62,7 @@ body{
 
 .about .menu-list{
   background-color: #EFF5F9;
+  padding-top: 50px;
 }
 
 .menu-list-option{
@@ -103,8 +104,12 @@ body.about{
 .muni-about{
   margin: 0 auto;
   margin-top: 20px;
+  max-height: 200px;
 }
 
+.about .text-about{
+  margin-top: 10px;
+}
 .about .version-info{
   margin-top: 15px;
   background-color: #0A4C9B;
@@ -381,6 +386,14 @@ input.form-control:hover, input.form-control:focus{
 /* Respuestas Agregar Tarjeta */
 
 /* .modal-fullscreen */
+.apiInfo{
+  margin-top: 20px;
+}
+
+.apiInfo a{
+  color: #FFF;
+  text-decoration: underline;
+}
 
 .modal-fullscreen {
   background: #FFF;
