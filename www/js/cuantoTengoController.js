@@ -154,7 +154,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
           // timeOnly = $filter('date')(response.data.fechaSaldo, 'HH:mm');
           balance = $filter('number')(response.data.saldos[0].saldo, 2);
 
-          // $scope.saveConsulta(cardID, uid, date, balance, name);
+          $scope.saveConsulta(cardID, uid, date, balance, name);
 
           $scope.storage = window.localStorage;
           $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+response.data.nroExternoTarjeta);
