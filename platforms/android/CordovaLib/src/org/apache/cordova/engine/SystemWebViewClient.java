@@ -219,6 +219,7 @@ public class SystemWebViewClient extends WebViewClient {
      * @param handler       An SslErrorHandler object that will handle the user's response.
      * @param error         The SSL error object.
      */
+    /* 
     @TargetApi(8)
     @Override
     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
@@ -240,6 +241,37 @@ public class SystemWebViewClient extends WebViewClient {
         } catch (NameNotFoundException e) {
             // When it doubt, lock it out!
             super.onReceivedSslError(view, handler, error);
+        }
+    }
+    */
+
+    @TargetApi(8)
+    @Override
+    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+        final String packageName = parentEngine.cordova.getActivity().getPackageName();
+        final PackageManager pm = parentEngine.cordova.getActivity().getPackageManager();
+
+        ApplicationInfo appInfo;
+        try {
+        appInfo = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+        if ((appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+          // debug = true
+          handler.proceed();
+          return;
+        } else {
+          // debug = false
+          // THIS IS WHAT YOU NEED TO CHANGE:
+          // 1. COMMENT THIS LINE
+          // super.onReceivedSslError(view, handler, error);
+          // 2. ADD THESE TWO LINES
+          // ---->
+          handler.proceed();
+          return;
+          // <----
+        }
+        } catch (NameNotFoundException e) {
+        // When it doubt, lock it out!
+        super.onReceivedSslError(view, handler, error);
         }
     }
 
