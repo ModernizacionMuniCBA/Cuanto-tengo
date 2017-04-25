@@ -97,6 +97,7 @@ body{
 /* About */
 body.about{
   background-color: #EFF5F9;
+  padding-bottom: 30px;
 }
 .about .navbar-ctengo{
   border: none;
