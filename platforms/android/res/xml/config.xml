@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ar.gob.cordoba.gobiernoabierto.cuantotengo" version="1.1.138" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="ar.gob.cordoba.gobiernoabierto.cuantotengo" version="1.1.142" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
@@ -20,8 +20,18 @@
     <allow-intent href="geo:*" />
     <access origin="*" />
     <allow-navigation href="*" />
-    <icon density="hdpi" src="www/res/icono-64x64.png" />
-    <splash density="land-hdpi" src="www/res/splash.png" />
+    <icon density="ldpi" qualifier="ldpi" src="/www/res/icono-64x64.png" />
+    <icon density="mdpi" qualifier="mdpi" src="/www/res/icono-64x64.png" />
+    <icon density="hdpi" qualifier="hdpi" src="/www/res/icono-64x64.png" />
+    <icon density="xhdpi" qualifier="xhdpi" src="/www/res/icono-64x64.png" />
+    <splash density="land-ldpi" qualifier="land-ldpi" src="/www/res/splash.png" />
+    <splash density="land-mdpi" qualifier="land-mdpi" src="/www/res/splash.png" />
+    <splash density="land-hdpi" qualifier="land-hdpi" src="/www/res/splash.png" />
+    <splash density="land-xhdpi" qualifier="land-xhdpi" src="/www/res/splash.png" />
+    <splash density="port-ldpi" qualifier="port-ldpi" src="/www/res/splash.png" />
+    <splash density="port-mdpi" qualifier="port-mdpi" src="/www/res/splash.png" />
+    <splash density="port-hdpi" qualifier="port-hdpi" src="/www/res/splash.png" />
+    <splash density="port-xhdpi" qualifier="port-xhdpi" src="/www/res/splash.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

@@ -209,7 +209,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
             var modalOptions = {
                 closeButton: true,
                 addNew: true,
-                headerText: '¡Tarjeta cargada con éxito!',
+                headerText: '¡Tarjeta leída con éxito!',
                 bodyText: 'El saldo en tu tarjeta es de:',
                 aceptarText: 'Ir a lista de tarjetas',
                 saldo: balance,
