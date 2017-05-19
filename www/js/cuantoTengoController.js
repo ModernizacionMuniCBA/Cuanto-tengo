@@ -110,6 +110,8 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
     };
     $http({
       method: 'POST',
+      crossDomain: true,
+      withCredentials: true,
       url: url_destino+"/v2/redbus-data/saldo-tarjeta-redbus/",
       data: JSON.stringify(data),//assuming you have the JSON library linked.
     }).then(function successCallback(response) {
@@ -143,6 +145,8 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
     // console.log(data);
     $http({
       method: 'POST',
+      crossDomain: true,
+      withCredentials: true,
       url: url_destino+"/v2/redbus-data/error-saldo-redbus/",
       data: JSON.stringify(data),//assuming you have the JSON library linked.
     }).then(function successCallback(response) {
