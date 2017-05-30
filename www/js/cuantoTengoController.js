@@ -36,6 +36,8 @@ app.controller('versionController', ['$scope', '$window', 'uuid', '$http', 'full
   $scope.checkVersion = function(){
     $http({
       method: 'GET',
+      crossDomain: true,
+      withCredentials: true,
       url: url_destino+"/v2/redbus-data/app-redbus/1/",
     }).then(function successCallback(response) {
         var lastChecked = $scope.storage.getItem('lastChecked')
@@ -69,6 +71,8 @@ app.controller('aboutController', ['$scope', '$window', '$sce', '$http', functio
 
   $http({
     method: 'GET',
+    crossDomain: true,
+    withCredentials: true,
     url: url_destino+"/v2/redbus-data/app-redbus/1/",
   }).then(function successCallback(response) {
       $scope.aboutApp = response.data.about_app;
@@ -86,7 +90,7 @@ app.controller('aboutController', ['$scope', '$window', '$sce', '$http', functio
 
 
 app.run(function($http) {
-  $http.defaults.headers.common.Authorization = 'Token ' + tokenAuth; //Setea Header a "Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  // $http.defaults.headers.common.Authorization = 'Token ' + tokenAuth; //Setea Header a "Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 });
 
 app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filter', function($scope, $http, fullwModalService, $filter) {
@@ -161,19 +165,21 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
   }
 
   $scope.about_data = "";
-  $http({
-    method: 'GET',
-    url: url_destino+"/v2/redbus-data/app-redbus/1/",
-  }).then(function successCallback(resp) {
-      $scope.about_data = resp.data.about_data;
-      // $scope.obtenerDataHTMLAPI = function() {
-      //   return $sce.trustAsHtml(about_data);
-      // };
-    }, function errorCallback(response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log('Error al conectar!')
-    });
+  // $http({
+  //   method: 'GET',
+  //   crossDomain: true,
+  //   withCredentials: true,
+  //   url: url_destino+"/v2/redbus-data/app-redbus/1/",
+  // }).then(function successCallback(resp) {
+  //     $scope.about_data = resp.data.about_data;
+  //     // $scope.obtenerDataHTMLAPI = function() {
+  //     //   return $sce.trustAsHtml(about_data);
+  //     // };
+  //   }, function errorCallback(response) {
+  //     // called asynchronously if an error occurs
+  //     // or server returns response with an error status.
+  //     console.log('Error al conectar!')
+  //   });
 
   $scope.actualizarCaptcha = function(){
     $("#captcha").prop("src", url_base + "/captcha.png?" + new Date().valueOf());
@@ -203,7 +209,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
           // timeOnly = $filter('date')(response.data.fechaSaldo, 'HH:mm');
           balance = $filter('number')(response.data.saldos[0].saldo, 2);
 
-          $scope.saveConsulta(cardID, uid, date, balance, name);
+          // $scope.saveConsulta(cardID, uid, date, balance, name);
 
           $scope.storage = window.localStorage;
           $scope.tarjeta_string = $scope.storage.getItem("tarjeta-"+response.data.nroExternoTarjeta);
@@ -248,7 +254,7 @@ app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filt
             name = $scope.formData.cardName;
           }
 
-          $scope.saveError(cardID, uid, error_code, error_details, error_redbus_code, name);
+          // $scope.saveError(cardID, uid, error_code, error_details, error_redbus_code, name);
 
           // console.log(response);
           var modalOptions = {
