@@ -96,6 +96,22 @@ app.run(function($http) {
 app.controller('formController', ['$scope', '$http', 'fullwModalService', '$filter', function($scope, $http, fullwModalService, $filter) {
   $scope.formData = {};
   $scope.storage = window.localStorage;
+
+  $http({
+    method: 'GET',
+    url: url_base,
+  }).then(function successCallback(response) {
+      // this callback will be called asynchronously
+      // when the response is available
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      if (response.status <= 0) {
+          console.log(response);
+          $("#error-rb").removeClass("hidden");
+      }
+    });
+
   $scope.saveConsulta = function(cardID, uid, date, balance, nombre){
     // POST require fields:
     //      - nombre_tarjeta.tarjeta.codigo: codigo de la tarjeta RedBus (numero)

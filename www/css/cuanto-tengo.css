@@ -535,3 +535,17 @@ input.form-control:hover, input.form-control:focus{
 @media(min-width:1200px){
 
 }
+
+
+.error-sign{
+    background-color: #ce5d5d;
+    color: #FFF;
+    font-weight: 900;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 0px;
+}
+.error-sign p{
+  margin-top: 10px;
+}
