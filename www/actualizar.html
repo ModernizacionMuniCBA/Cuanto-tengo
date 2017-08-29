@@ -12,23 +12,23 @@
         -->
         <meta charset="utf-8">
 
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 
-                      http://localhost:8000 
-                      http://www.miredbus.com.ar/ 
-                      https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/ 
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'
+                      http://localhost:8000
+                      http://www.miredbus.com.ar/
+                      https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/
                       http://testing.cordoba.miredbus.com.ar:8282/miredbus/
-                      https://200.123.180.122:5743/ 
-                    data: 
-                    gap: https://ssl.gstatic.com 
-                      'unsafe-eval' 
-                      'unsafe-inline'; 
-                    style-src 'self' 'unsafe-inline'; 
-                    media-src *; 
-                    img-src 'self' 
-                      http://www.miredbus.com.ar 
-                      http://testing.cordoba.miredbus.com.ar:8282/miredbus/ 
+                      https://200.123.180.122:5743/
+                    data:
+                    gap: https://ssl.gstatic.com
+                      'unsafe-eval'
+                      'unsafe-inline';
+                    style-src 'self' 'unsafe-inline';
+                    media-src *;
+                    img-src 'self'
+                      http://www.miredbus.com.ar
+                      http://testing.cordoba.miredbus.com.ar:8282/miredbus/
                       https://200.123.180.122:5743
-                    data: 
+                    data:
                     content:;">
 
         <meta name="format-detection" content="telephone=no">
@@ -134,9 +134,12 @@
               <label>El código de tu tarjeta es numérico y se encuentra en la parte posterior de la misma o en los tickets de carga</label>
               <span class="help-block"></span>
             </div>
+            <div id="error-rb" class="error-sign hidden form-group col-xs-12">
+              <p> Servicios de datos de RED BUS fuera de servicio </p>
+            </div>
             <div id="captcha-group" class="form-group col-xs-12">
               <img ng-src="{{url_base}}/captcha.png" alt="captcha" class="img-responsive captcha-img"/>
-              <input type="text" name="captcha" class="form-control" placeholder="Captcha" ng-model="formData.captcha">
+              <input type="text" name="captcha" class="form-control" placeholder="Captcha" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="formData.captcha">
               <label>ingrese el código que ve en pantalla</label>
               <span class="help-block"></span>
             </div>
