@@ -13,7 +13,7 @@
           <img ng-src="{{modalOptions.urlBase}}/captcha.png" alt="captcha" class="img-responsive captcha-img" id="captcha"/>
           <a ng-click="actualizarCaptcha()" class="actualizarIcon" style="cursor: pointer"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
         </div>
-        <input type="text" name="captcha" class="form-control" placeholder="Captcha" ng-model="formData.captcha">
+        <input type="text" name="captcha" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" placeholder="Captcha" ng-model="formData.captcha">
         <label>ingrese el código que ve en pantalla</label>
         <span class="help-block"></span>
       </div>

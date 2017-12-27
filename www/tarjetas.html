@@ -13,24 +13,24 @@
         <meta charset="utf-8">
 
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;"> -->
-        <meta http-equiv="Content-Security-Policy" 
-        content="default-src 'self' 
-                      http://localhost:8000 
-                      http://www.miredbus.com.ar/ 
-                      https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/ 
+        <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'
+                      http://localhost:8000
+                      http://www.miredbus.com.ar/
+                      https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/
                       http://testing.cordoba.miredbus.com.ar:8282/miredbus/
-                      https://200.123.180.122:5743/ 
-                    data: 
-                    gap: https://ssl.gstatic.com 
-                      'unsafe-eval' 
-                      'unsafe-inline'; 
-                    style-src 'self' 'unsafe-inline'; 
-                    media-src *; 
-                    img-src 'self' 
-                      http://www.miredbus.com.ar 
-                      http://testing.cordoba.miredbus.com.ar:8282/miredbus/ 
+                      https://200.123.180.122:5743/
+                    data:
+                    gap: https://ssl.gstatic.com
+                      'unsafe-eval'
+                      'unsafe-inline';
+                    style-src 'self' 'unsafe-inline';
+                    media-src *;
+                    img-src 'self'
+                      http://www.miredbus.com.ar
+                      http://testing.cordoba.miredbus.com.ar:8282/miredbus/
                       https://200.123.180.122:5743
-                    data: 
+                    data:
                     content:;">
 
         <meta name="format-detection" content="telephone=no">
@@ -176,11 +176,7 @@
 
         <script>
         $( document ).ready(function() {
-          // if (confirm('Are you sure you want to save this thing into the database?')) {
-          //     // Save it!
-          // } else {
-          //     // Do nothing!
-          // }
+
           $('.circle').each(function() {
             initializeCircle($(this));
           });
@@ -195,11 +191,7 @@
             var borrar = $(this).closest('.boton-borrar');
             borrar.css('margin-top', ((altura-(borrar.outerHeight(false)))/2));
           });
-          // $('.boton-borrar').each(function() {
-          //   var altura = $( this ).closest('.tarjetas-list-option').find('.info-tarjeta').outerHeight(false);
-          //   var img_h = $( this ).outerHeight(false);
-          //   $( this ).parent().css('margin-top', (altura-img_h)/2);
-          // });
+
           bottom = $('.navbar.navbar-ctengo.navbar-fixed-top').position().top + $('.navbar.navbar-ctengo.navbar-fixed-top').outerHeight(true);
   				$('body').css('padding-top', bottom);
 

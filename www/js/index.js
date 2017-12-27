@@ -45,12 +45,3 @@ var app = {
 var inCordova = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 
 app.initialize();
-
-$( document ).ready(function() {
-  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) && inCordova) {
-      $('.navbar-ctengo').css('padding-top', '20px');
-      $('.navmenu-nav.first').css('padding-top', '20px');
-      var padding = $('body').css('padding-top');
-      $('body').css('padding-top', parseInt(padding)+20);
-  }
-});
