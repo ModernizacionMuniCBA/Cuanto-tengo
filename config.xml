@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ar.gob.cordoba.gobiernoabierto.cuantotengo" version="1.1.147" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="ar.gob.cordoba.gobiernoabierto.cuantotengo" version="1.1.154" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Cuanto Tengo</name>
     <description>
         Aplicación de la Municipalidad de Córdoba para conocer el saldo de la tarjeta de transporte RedBus
@@ -8,7 +8,6 @@
         Secretaría de Modernización de la Ciudad de Córdoba
     </author>
     <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -19,28 +18,35 @@
     <access origin="*" />
     <allow-navigation href="*" />
     <platform name="android">
-
-        <icon src="/www/res/icono-64x64.png" density="ldpi" qualifier="ldpi" />
-        <icon src="/www/res/icono-64x64.png" density="mdpi" qualifier="mdpi" />
-        <icon src="/www/res/icono-64x64.png" density="hdpi" qualifier="hdpi" />
-        <icon src="/www/res/icono-64x64.png" density="xhdpi" qualifier="xhdpi" />
-
-        <splash src="/www/res/splash.png" density="land-ldpi" qualifier="land-ldpi" />
-        <splash src="/www/res/splash.png" density="land-mdpi" qualifier="land-mdpi" />
-        <splash src="/www/res/splash.png" density="land-hdpi" qualifier="land-hdpi" />
-        <splash src="/www/res/splash.png" density="land-xhdpi" qualifier="land-xhdpi" />
-
-        <splash src="/www/res/splash.png" density="port-ldpi" qualifier="port-ldpi" />
-        <splash src="/www/res/splash.png" density="port-mdpi" qualifier="port-mdpi" />
-        <splash src="/www/res/splash.png" density="port-hdpi" qualifier="port-hdpi" />
-        <splash src="/www/res/splash.png" density="port-xhdpi" qualifier="port-xhdpi" />
-
+        <icon density="ldpi" qualifier="ldpi" src="/www/res/icono-64x64.png" />
+        <icon density="mdpi" qualifier="mdpi" src="/www/res/icono-64x64.png" />
+        <icon density="hdpi" qualifier="hdpi" src="/www/res/icono-64x64.png" />
+        <icon density="xhdpi" qualifier="xhdpi" src="/www/res/icono-64x64.png" />
+        <splash density="land-ldpi" qualifier="land-ldpi" src="/www/res/splash.png" />
+        <splash density="land-mdpi" qualifier="land-mdpi" src="/www/res/splash.png" />
+        <splash density="land-hdpi" qualifier="land-hdpi" src="/www/res/splash.png" />
+        <splash density="land-xhdpi" qualifier="land-xhdpi" src="/www/res/splash.png" />
+        <splash density="port-ldpi" qualifier="port-ldpi" src="/www/res/splash.png" />
+        <splash density="port-mdpi" qualifier="port-mdpi" src="/www/res/splash.png" />
+        <splash density="port-hdpi" qualifier="port-hdpi" src="/www/res/splash.png" />
+        <splash density="port-xhdpi" qualifier="port-xhdpi" src="/www/res/splash.png" />
         <allow-intent href="market:*" />
     </platform>
-
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <preference name="StatusBarOverlaysWebView" value="false" />
+        <preference name="StatusBarBackgroundColor" value="#eff5f9" />
+        <preference name="StatusBarStyle" value="default" />
+        <preference name="DisallowOverscroll" value="true" />
+        <preference name="AutoHideSplashScreen" value="false" />
     </platform>
-    <engine name="ios" spec="~4.3.1" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <engine name="ios" spec="^4.5.4" />
+    <engine name="android" spec="^6.2.2" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
 </widget>
