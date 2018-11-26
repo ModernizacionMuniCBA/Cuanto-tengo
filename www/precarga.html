@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta charset="utf-8">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:8000 http://www.miredbus.com.ar/ https://gobiernoabierto.cordoba.gob.ar/api/v2/redbus-data/ http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' http://www.miredbus.com.ar http://testing.cordoba.miredbus.com.ar:8282/miredbus/ data: content:;">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <script type="text/javascript" src="version.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/fuentes.css">
+        <link rel="stylesheet" type="text/css" href="css/cuanto-tengo.css">
+        <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.css">
+        <title>¿Cuánto Tengo?</title>
+
+    </head>
+    <body>
+        <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+            <ul class="nav navmenu-nav first">
+                <li>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="side-navbar-title">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <img src="img/cuanto-tengo-texto.png" class="img-responsive img-menu-ct">
+                                    </div>
+                                    <div class="col-xs-6 col-xs-offset-1">
+                                        <img src="img/muni-menu.png" class="img-responsive img-menu-muni">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navmenu-nav">
+                <li><a href="index.html">INICIO</a></li>
+            </ul>
+            <ul class="nav navmenu-nav">
+                <li><a href="tarjetas.html">LISTA DE TARJETAS</a></li>
+            </ul>
+            <ul class="nav navmenu-nav">
+                <li><a href="agregar.html">AGREGAR UNA TARJETA</a></li>
+            </ul>
+            <ul class="nav navmenu-nav">
+                <li class="active"><a href="precarga.html">PUNTOS DE RECARGA</a></li>
+            </ul>
+            <ul class="nav navmenu-nav" style="margin: 30px 0;">
+                <li><a href="about.html">SOBRE ESTA APP</a></li>
+            </ul>
+        </nav>
+        <div class="navbar navbar-default navbar-ctengo navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+            <div id="GMap"></div>
+
+        </div>
+
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-uuid.js"></script>
+        <script type="text/javascript" src="js/ui-bootstrap-0.14.3.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/jasny-bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/credentials.js"></script>
+        <script type="text/javascript" src="version.js"></script>
+        <script type="text/javascript" src="js/moment.js"></script>
+
+        <script type="text/javascript" src="js/cuantoTengoApp.js"></script>
+        <script type="text/javascript" src="js/cuantoTengoController.js"></script>
+        <script type="text/javascript" src="js/precarga.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPodihDoVr4D9rALdzJTdf9BJrPkKCMCk&callback=initMap" async defer></script>
+    </body>
+</html>
