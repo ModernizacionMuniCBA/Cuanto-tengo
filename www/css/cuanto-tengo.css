@@ -62,7 +62,7 @@ body{
 
 .about .menu-list{
   background-color: #EFF5F9;
-  padding-top: 50px;
+  /*padding-top: 50px;*/
 }
 
 .menu-list-option{
@@ -128,6 +128,17 @@ body.about{
   color: #FFF;
   font-family: Gotham;
   font-weight: 500;
+}
+
+.about .pasaje-info {
+    background-color: #e8f0f5;
+    margin-top: 10px;
+    color: #004b9f;
+}
+
+.about .pasaje-info h2 {
+    margin: 15px 0;
+    font-size: 1.1em;
 }
 
 .about .about-muni{
@@ -550,3 +561,12 @@ input.form-control:hover, input.form-control:focus{
 .error-sign p{
   margin-top: 10px;
 }
+
+/***** Inicio: Nav menu ******/
+
+/* Corresponde a los links del menú de navegación*/
+.nav.navmenu-nav a {
+    text-transform: uppercase; /* Nos aseguramos que los links van a ser transformados a Uppercase. */
+}
+
+/***** Fin: Nav menu ******/
