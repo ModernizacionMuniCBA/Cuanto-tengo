@@ -43,18 +43,21 @@ echo " ******************************** "
 echo "Compilando con key ..."
 echo " ******************************** "
 
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ${APPNAME}.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk ${APPNAME} <<< $MKEY
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 \
+    -keystore ${APPNAME}.keystore \
+    platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk \
+    ${APPNAME} <<< $MKEY
 
 echo " ******************************** "
 echo "Limpiando APK anterior"
 echo " ******************************** "
 # borrar el anterior comppilado
-rm platforms/android/build/outputs/apk/${APPNAME}-release.apk
+rm platforms/android/app/build/outputs/apk/release/${APPNAME}.apk
 
 echo " ******************************** "
 echo "Alineado y balanceado"
 echo " ******************************** "
 
-${MYSDKPATH}/build-tools/23.0.3/zipalign -v 4 \
-  platforms/android/build/outputs/apk/android-release-unsigned.apk \
-  platforms/android/build/outputs/apk/${APPNAME}-release.apk
+zipalign -v 4 \
+    platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk \
+    platforms/android/app/build/outputs/apk/release/${APPNAME}.apk

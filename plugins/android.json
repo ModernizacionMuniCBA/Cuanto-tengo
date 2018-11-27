@@ -7,13 +7,13 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "ar.gob.cordoba.gobiernoabierto.cuantotengo"
     },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "ar.gob.cordoba.gobiernoabierto.cuantotengo"
     },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "ar.gob.cordoba.gobiernoabierto.cuantotengo"
     }
   },

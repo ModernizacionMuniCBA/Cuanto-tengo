@@ -112,7 +112,7 @@ public class SystemWebViewClient extends WebViewClient {
      * @param request
      */
     @Override
-    @TargetApi(21)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void onReceivedClientCertRequest (WebView view, ClientCertRequest request)
     {
 
@@ -219,8 +219,6 @@ public class SystemWebViewClient extends WebViewClient {
      * @param handler       An SslErrorHandler object that will handle the user's response.
      * @param error         The SSL error object.
      */
-    /* 
-    @TargetApi(8)
     @Override
     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
 
@@ -241,37 +239,6 @@ public class SystemWebViewClient extends WebViewClient {
         } catch (NameNotFoundException e) {
             // When it doubt, lock it out!
             super.onReceivedSslError(view, handler, error);
-        }
-    }
-    */
-
-    @TargetApi(8)
-    @Override
-    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-        final String packageName = parentEngine.cordova.getActivity().getPackageName();
-        final PackageManager pm = parentEngine.cordova.getActivity().getPackageManager();
-
-        ApplicationInfo appInfo;
-        try {
-        appInfo = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-        if ((appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
-          // debug = true
-          handler.proceed();
-          return;
-        } else {
-          // debug = false
-          // THIS IS WHAT YOU NEED TO CHANGE:
-          // 1. COMMENT THIS LINE
-          // super.onReceivedSslError(view, handler, error);
-          // 2. ADD THESE TWO LINES
-          // ---->
-          handler.proceed();
-          return;
-          // <----
-        }
-        } catch (NameNotFoundException e) {
-        // When it doubt, lock it out!
-        super.onReceivedSslError(view, handler, error);
         }
     }
 
@@ -348,7 +315,6 @@ public class SystemWebViewClient extends WebViewClient {
         this.authenticationTokens.clear();
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
         try {
@@ -381,7 +347,7 @@ public class SystemWebViewClient extends WebViewClient {
     }
 
     private static boolean needsKitKatContentUrlFix(Uri uri) {
-        return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT && "content".equals(uri.getScheme());
+        return "content".equals(uri.getScheme());
     }
 
     private static boolean needsSpecialsInAssetUrlFix(Uri uri) {
@@ -396,11 +362,6 @@ public class SystemWebViewClient extends WebViewClient {
             return false;
         }
 
-        switch(android.os.Build.VERSION.SDK_INT){
-            case android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH:
-            case android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1:
-                return true;
-        }
         return false;
     }
 }
