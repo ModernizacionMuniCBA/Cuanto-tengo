@@ -10,8 +10,6 @@ var _lat = -31.411822771446154, _lng = -64.18487548203126;
 $(document).ready(function () {
     resizeWnd();
 
-    $('#app_version_number').html(cordova_app_version);
-
     $(window).on('resize', function () {
         resizeWnd();
     });
