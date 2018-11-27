@@ -1,0 +1,36 @@
+﻿************
+Ver 1.x (Agregar versión actual)
+************
+26-11-18
+--------
+1- Se añadieron los íconos correspondientes a los puntos de recarga
+	* /img/logCba2.png
+	* /img/redbusIcon.png
+
+2- Se añadió geolocalización
+	* /www/js/precarga.js
+
+25-11-18
+--------
+1- Los links del menú de navegación van a ser siempre forzados a escribirse en Uppercase, de manera tal que nos despreocupamos de mantener la coherencia a lo largo
+   de cada una de las páginas que implementen dicho menú.
+	* /www/css/cuanto-tengo.css
+		+ Nueva regla: .nav.navmenu-nav a
+
+2- Corregida una duplicación de atributo de clase en el boton "navbar-toggle". 
+	* /www/index.html
+	* /www/tarjetas.html
+	* /www/agregar.html
+	* /www/actualizar.html
+	* /www/about.html
+
+3- Se agregó el link hacía la sección de "Puntos de Recarga" en el menú de navegación
+	* /www/index.html
+	* /www/tarjetas.html
+	* /www/agregar.html
+	* /www/actualizar.html
+	* /www/about.html
+
+4- Se añadió un mapa de google donde se muestran los marcadores con los distintos puntos de recarga a lo largo de la ciudad.
+	* /www/js/precarga.js
+	* /www/precarga.html
