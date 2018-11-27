@@ -82,14 +82,22 @@
             <img src="img/muni-menu.png" class="img-responsive muni-about"/>
           </div>
           <div class="col-xs-12">
-            <div class="row version-info">
-              <div class="col-xs-6">
-                <h2 class="text-version">Versión</h2>
+              <div class="row version-info">
+                  <div class="col-xs-6">
+                      <h2 class="text-version">Versión</h2>
+                  </div>
+                  <div class="col-xs-6">
+                      <h2 class="version-number" id="app_version_number"></h2>
+                  </div>
               </div>
-              <div class="col-xs-6">
-                <h2 class="version-number" id="app_version_number"></h2>
+              <div ng-show="pasajeInfo" class="row pasaje-info">
+                  <div class="col-xs-8">
+                      <h2>Precio pasaje</h2>
+                  </div>
+                  <div class="col-xs-4">
+                      <h2 class="precio-pasaje text-right" ng-bind="precioPasaje"></h2>
+                  </div>
               </div>
-            </div>
           </div>
           <div class="col-xs-8 col-xs-offset-2">
             <img src="img/cuanto-tengo-logo.png" class="img-responsive muni-about"/>

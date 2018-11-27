@@ -1,60 +1,86 @@
-app.controller('cuantoTengoController', ['$scope', '$window', 'uuid', function($scope, $window, uuid) {
-  $scope.url_base = $window.url_base;
-  $scope.storage = window.localStorage;
-  $scope.uuid = $scope.storage.getItem("uuid");
-  if($scope.uuid == null){
-    var hash = uuid.v4();
-    $scope.storage.setItem("uuid", hash);
-  }
+app.controller('cuantoTengoController', ['$scope', '$window', '$http', 'uuid', function ($scope, $window, $http, uuid) {
+    $scope.url_base = $window.url_base;
+    $scope.storage = window.localStorage;
+    $scope.uuid = $scope.storage.getItem("uuid");
+    if ($scope.uuid == null) {
+        var hash = uuid.v4();
+        $scope.storage.setItem("uuid", hash);
+    }
+
+    // Intentamos obtener la configuración de la App
+    $scope.appConfig = $scope.storage.getItem("appCfg");
+
+    var curTime = new Date().getTime();
+    var hourTime = 1000 * 60 * 60;
+
+    // Verificamos si la configuración existe en localStorage o si han pasado mas de 12 horas
+    if ($scope.appConfig === null || (curTime - $scope.appConfig.date) / hourTime > 12) {
+        var endUrl = url_destino + "/v2/software-municipal/apps-moviles/9/";
+        // Solicitamos la configuración al WebService
+        $http.get(endUrl).then(function successCallback(response) {
+
+            // Si la solicitud fue realizada con éxito Y se pudo leer la configuración desde el WebService
+            // almacenamos la información en memoria.
+            if (response.data.configuraciones !== undefined && response.data.configuraciones !== null)
+            {
+                var appDataJson = JSON.stringify({ date: curTime, cfgData: response.data.configuraciones });
+                $scope.storage.setItem("appCfg", appDataJson);
+            }
+
+        }, function errorCallback(response) {
+            console.log("Error al obtener el archivo de configuración");
+        });
+    }
+
 }]);
 
-app.controller('versionController', ['$scope', '$window', 'uuid', '$http', 'fullwModalVersionService', function($scope, $window, uuid, $http, fullwModalVersionService) {
-  $scope.url_base = $window.url_base;
-  $scope.storage = window.localStorage;
-  $scope.check = function(response){
-    if(response.data.version_minima > cordova_app_version){
-      var modalOptions = {
-          closeButton: false,
-          headerText:  response.data.txt_sino_hay_version_minima,
-      };
-      fullwModalVersionService.showModal({windowClass: 'modal-fullscreen version'}, modalOptions).then(function (result) {
-      });
-    }else{
-      if(response.data.version_recomendada > cordova_app_version){
-        var modalOptions = {
-            closeButton: true,
-            headerText:  response.data.txt_sino_hay_version_recomendada,
-        };
-        fullwModalVersionService.showModal({windowClass: 'modal-fullscreen version'}, modalOptions).then(function (result) {
-        $scope.storage.setItem('lastChecked', new Date());
-        });
-      }else{
-        $scope.storage.setItem('lastChecked', new Date());
-      }
-    }
-  }
-  $scope.checkVersion = function(){
-    $http({
-      method: 'GET',
-      crossDomain: true,
-      withCredentials: true,
-      url: url_destino+"/v2/redbus-data/app-redbus/1/",
-    }).then(function successCallback(response) {
-        var lastChecked = $scope.storage.getItem('lastChecked')
-        if(lastChecked == null){
-          $scope.check(response);
-        }else{
-          if((new Date(lastChecked).getTime() + 86400) < new Date().getTime()){
-            $scope.check(response);
-          }
+app.controller('versionController', ['$scope', '$window', 'uuid', '$http', 'fullwModalVersionService', function ($scope, $window, uuid, $http, fullwModalVersionService) {
+    $scope.url_base = $window.url_base;
+    $scope.storage = window.localStorage;
+    $scope.check = function (response) {
+        if (response.data.version_minima > cordova_app_version) {
+            var modalOptions = {
+                closeButton: false,
+                headerText: response.data.txt_sino_hay_version_minima,
+            };
+            fullwModalVersionService.showModal({ windowClass: 'modal-fullscreen version' }, modalOptions).then(function (result) { });
         }
-      }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log('Error al conectar!')
-      });
-  }
-  $scope.checkVersion();
+        else {
+            if (response.data.version_recomendada > cordova_app_version) {
+                var modalOptions = {
+                    closeButton: true,
+                    headerText: response.data.txt_sino_hay_version_recomendada,
+                };
+                fullwModalVersionService.showModal({ windowClass: 'modal-fullscreen version' }, modalOptions).then(function (result) {
+                    $scope.storage.setItem('lastChecked', new Date());
+                });
+            } else {
+                $scope.storage.setItem('lastChecked', new Date());
+            }
+        }
+    }
+    $scope.checkVersion = function () {
+        $http({
+            method: 'GET',
+            crossDomain: true,
+            withCredentials: true,
+            url: url_destino + "/v2/redbus-data/app-redbus/1/",
+        }).then(function successCallback(response) {
+            var lastChecked = $scope.storage.getItem('lastChecked')
+            if (lastChecked == null) {
+                $scope.check(response);
+            } else {
+                if ((new Date(lastChecked).getTime() + 86400) < new Date().getTime()) {
+                    $scope.check(response);
+                }
+            }
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('Error al conectar!')
+        });
+    }
+    $scope.checkVersion();
 }]);
 
 app.filter('renderHTMLCorrectly', function($sce)
@@ -65,24 +91,46 @@ app.filter('renderHTMLCorrectly', function($sce)
 	}
 });
 
-app.controller('aboutController', ['$scope', '$window', '$sce', '$http', function($scope, $window, $sce, $http) {
-  $scope.url_base = $window.url_base;
-  $scope.storage = window.localStorage;
+app.controller('aboutController', ['$scope', '$window', '$sce', '$http', function ($scope, $window, $sce, $http) {
+    $scope.url_base = $window.url_base;
+    $scope.storage = window.localStorage;
 
-  $http({
-    method: 'GET',
-    crossDomain: true,
-    withCredentials: true,
-    url: url_destino+"/v2/redbus-data/app-redbus/1/",
-  }).then(function successCallback(response) {
-      $scope.aboutApp = response.data.about_app;
-      $scope.aboutPriv = response.data.politica_de_privacidad;
-      $scope.aboutTyC = response.data.terminos_y_condiciones;
+    // Intentamos obtener la configuración de la App
+    $scope.appConfig = $scope.storage.getItem("appCfg");
+
+    if ($scope.appConfig !== null) {
+        var appDataJson = JSON.parse($scope.appConfig);
+
+        if (appDataJson !== undefined || appDataJson !== null) {
+            if (appDataJson.cfgData !== null) {
+                // Recorremos la lista de configuraciones
+                for (var i = 0; i < appDataJson.cfgData.length; i++) {
+                    var curCfg = appDataJson.cfgData[i];
+                    // buscamos el precio del pasaje
+                    if (curCfg.nombre === "precio_estandar_pasaje") {
+                        $scope.precioPasaje = "$" + curCfg.valor;
+                        $scope.pasajeInfo = true;   // Mostramos el contenedor del precio solo cuando se haya encontrado dicha configuración.
+                        break;  // No es necesario seguir dentro del loop.
+                    }
+                }
+            }
+        }
+    }
+
+    $http({
+        method: 'GET',
+        crossDomain: true,
+        withCredentials: true,
+        url: url_destino + "/v2/redbus-data/app-redbus/1/"
+    }).then(function successCallback(response) {
+        $scope.aboutApp = response.data.about_app;
+        $scope.aboutPriv = response.data.politica_de_privacidad;
+        $scope.aboutTyC = response.data.terminos_y_condiciones;
 
     }, function errorCallback(response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log('Error al conectar!')
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log('Error al conectar!');
     });
 
 }]);

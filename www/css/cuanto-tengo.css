@@ -130,6 +130,17 @@ body.about{
   font-weight: 500;
 }
 
+.about .pasaje-info {
+    background-color: #e8f0f5;
+    margin-top: 10px;
+    color: #004b9f;
+}
+
+.about .pasaje-info h2 {
+    margin: 15px 0;
+    font-size: 1.1em;
+}
+
 .about .about-muni{
   margin-top: 15px;
   color: #0A4C9B;
