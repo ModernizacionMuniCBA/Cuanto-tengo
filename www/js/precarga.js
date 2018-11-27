@@ -15,7 +15,11 @@ $(document).ready(function () {
     });
 
     // Solicitamos obtener la posición del usuario
-    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+    // Debemos especificar el tiempo de espera para corregir un comportamiento en Android el cual se puede encontrar en los docs de apache-cordova:
+    /* If Geolocation service is turned off the onError callback is invoked after timeout interval (if specified).
+       If timeout parameter is not specified then no callback is called. */
+    var reqTimeout = 1000 * 15; // 15 segundos
+    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, { timeout: reqTimeout });
 });
 
 function resizeWnd() {

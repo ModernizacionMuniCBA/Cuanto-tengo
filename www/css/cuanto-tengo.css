@@ -559,11 +559,3 @@ input.form-control:hover, input.form-control:focus{
 }
 
 /***** Fin: Nav menu ******/
-
-/***** Inicio: precarga.html ******/
-/* Corresponde al contenedor del mapa de google */
-#GMap {
-    /*height: 500px;*/
-}
-
-/***** Fin: precarga.html ******/
