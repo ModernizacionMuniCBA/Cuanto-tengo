@@ -48,5 +48,3 @@ resources/signing
 
 # plugins folders
 plugins/*/
-www/scripts/platformOverrides.js
-www/scripts/index.js
