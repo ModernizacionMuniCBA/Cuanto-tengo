@@ -1,6 +1,6 @@
 # Webservice RedBus
 Sobre una URL base se pueden aplicar los siguientes llamadas.  
-URL base temporal: http://https://200.123.180.122:5743
+URL base temporal: http://200.123.180.122:5743
 
 ## Llamadas
 /captcha.png: Devuelve un captcha válido para una sesion de consulta  
