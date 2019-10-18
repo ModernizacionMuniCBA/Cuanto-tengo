@@ -12,8 +12,8 @@ Ver 1.x (Agregar versión actual)
 
 25-11-18
 --------
-1- Los links del menú de navegación van a ser siempre forzados a escribirse en Uppercase, de manera tal que nos despreocupamos de mantener la coherencia a lo largo
-   de cada una de las páginas que implementen dicho menú.
+1- Los links del menú de navegación van a ser siempre forzados a escribirse en Uppercase, de manera tal que nos despreocupamos de mantener 
+	la coherencia a lo largo de cada una de las páginas que implementen dicho menú.
 	* /www/css/cuanto-tengo.css
 		+ Nueva regla: .nav.navmenu-nav a
 
