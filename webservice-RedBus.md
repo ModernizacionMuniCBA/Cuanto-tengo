@@ -1,6 +1,6 @@
 # Webservice RedBus
 Sobre una URL base se pueden aplicar los siguientes llamadas.  
-URL base temporal: http://200.123.180.122:5743
+URL base: https://mrb.red-bus.com.ar:443
 
 ## Llamadas
 /captcha.png: Devuelve un captcha válido para una sesion de consulta  
